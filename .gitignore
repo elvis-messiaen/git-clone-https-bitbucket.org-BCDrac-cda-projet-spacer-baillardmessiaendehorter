@@ -107,3 +107,7 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,maven
 .classpath
+
+.project
+
+pom.xml
