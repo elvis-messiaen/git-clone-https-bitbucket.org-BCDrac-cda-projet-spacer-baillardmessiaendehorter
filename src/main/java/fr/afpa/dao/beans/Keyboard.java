@@ -12,13 +12,17 @@ public class Keyboard implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT && Test.plane.getPositionX() != 598) {
-		Test.plane.setPositionX(1);
+			System.out.println("doite");
+			Test.plane.setPositionX(+1);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT && Test.plane.getPositionX() != 2) {
 			Test.plane.setPositionX(-1);
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT && Test.plane.getPositionY() != 450) {
-			Test.plane.setPositionX(1);
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT && Test.plane.getPositionY() != 150) {
+			System.out.println("gauche");
+		} else if (e.getKeyCode() == KeyEvent.VK_UP && Test.plane.getPositionY() != 450) {
+			Test.plane.setPositionX(+1);
+			System.out.println("haut");
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN && Test.plane.getPositionY() != 150) {
 			Test.plane.setPositionX(-1);
+			System.out.println("bas");
 		}
 	}
 
@@ -30,7 +34,6 @@ public class Keyboard implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 }

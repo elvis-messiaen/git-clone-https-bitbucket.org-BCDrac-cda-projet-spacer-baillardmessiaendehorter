@@ -27,8 +27,8 @@ public class PlaneBeans extends JPanel {
 
 	public PlaneBeans() {
 		super();
-		this.positionX = 110;
-		this.PositionY = 300;
+
+
 		icoPlane = new ImageIcon(getClass().getResource("/plane.png"));
 		this.plane = this.icoPlane.getImage();
 		this.setFocusable(true);
