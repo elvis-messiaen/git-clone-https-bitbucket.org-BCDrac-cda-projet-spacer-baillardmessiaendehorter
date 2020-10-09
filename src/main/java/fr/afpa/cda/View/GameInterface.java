@@ -125,7 +125,5 @@ public class GameInterface extends JFrame {
 		fenetre.add(panelButtons, BorderLayout.SOUTH);
 
 		fenetre.setVisible(true);
-
 	}
-
 }
