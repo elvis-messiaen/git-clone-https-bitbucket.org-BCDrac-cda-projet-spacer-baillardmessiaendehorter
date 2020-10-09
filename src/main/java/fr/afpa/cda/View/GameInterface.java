@@ -27,6 +27,9 @@ public class GameInterface extends JFrame {
 
 		ImageIcon icon;
 
+		icon = new ImageIcon(getClass().getResource("/plane.png"));
+		System.out.println(icon);
+
 		// Instanciations des différents élements
 		JFrame fenetre = new JFrame("Mon jeu d'avion");
 
@@ -82,23 +85,14 @@ public class GameInterface extends JFrame {
 
 		// Préparation de l'image à afficher dans le label "keys", qui ira se placer
 		// dans le JPanel "panelButtons"
-		try {
-			BufferedImage img = ImageIO.read(new File("F:/Avion/keys.jpg"));
-			icon = new ImageIcon(img);
-			keys.setIcon(icon);
-		} catch (IOException ie) {
-			System.out.println(ie.getMessage());
-		}
+
+		icon = new ImageIcon(getClass().getResource("/keys.jpg"));
+		keys.setIcon(icon);
 
 		// Préparation de l'image à afficher dans le Panel panelDisplay
-		try {
-			BufferedImage img2 = ImageIO.read(new File("F:/Avion/background.jpg"));
-			icon = new ImageIcon(img2);
-			background.setIcon(icon);
 
-		} catch (IOException ie) {
-			System.out.println(ie.getMessage());
-		}
+		icon = new ImageIcon(getClass().getResource("/background.jpg"));
+		background.setIcon(icon);
 
 		// Assemblage du panel panelButtons
 		panelButtons.add(keys, BorderLayout.CENTER);
@@ -116,13 +110,16 @@ public class GameInterface extends JFrame {
 		infos.setVisible(true);
 
 		panelDisplay.add(infos, BorderLayout.NORTH);
-		
-		// panelDisplay.add(new JTextField(" "), BorderLayout.CENTER);
+
 		panelDisplay.add(background, BorderLayout.CENTER);
 
 		// Assemblage de la fenêtre
 		fenetre.add(panelDisplay, BorderLayout.CENTER);
 		fenetre.add(panelButtons, BorderLayout.SOUTH);
+
+		// Ajout de l'icone de'avion dans la frame
+
+		ImageIcon plane = new ImageIcon(getClass().getResource("/plane.png"));
 
 		fenetre.setVisible(true);
 	}

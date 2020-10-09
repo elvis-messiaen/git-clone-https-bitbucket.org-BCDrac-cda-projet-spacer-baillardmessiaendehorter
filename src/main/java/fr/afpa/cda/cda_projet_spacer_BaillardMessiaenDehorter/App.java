@@ -1,5 +1,7 @@
 package fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter;
 
+import javax.swing.ImageIcon;
+
 import fr.afpa.cda.View.GameInterface;
 
 /**
@@ -12,5 +14,7 @@ public class App
     {
         GameInterface game = new GameInterface();
         game.fenetre();
+        
+       
     }
 }
