@@ -21,25 +21,43 @@ public class PlaneBeans extends JPanel {
 	 */
 	private ImageIcon icoPlane;
 	private Image plane;
-
 	private int healtPoint;
-	private double positionX;
-	private double PositionY;
+	private int positionX;
+	private int PositionY;
 
 	public PlaneBeans() {
 		super();
 		this.positionX = 110;
 		this.PositionY = 300;
-		
 		icoPlane = new ImageIcon(getClass().getResource("/plane.png"));
 		this.plane = this.icoPlane.getImage();
+		this.setFocusable(true);
+		this.addKeyListener(new Keyboard());
 	}
 
 	@Override
 	protected void paintComponent(Graphics graph) {
 		super.paintComponents(graph);
+		this.positionX = 300;
+		this.PositionY = 400;
 		Graphics graph2 = (Graphics2D)graph;
-		graph2.drawImage(plane,300,400,null);
+		graph2.drawImage(plane,positionX,PositionY,null);
+	}
+
+	public int getPositionX() {
+		return positionX;
+	}
+
+	public void setPositionX(int positionX) {
+		this.positionX = positionX;
+	}
+
+	public int getPositionY() {
+		return PositionY;
+	}
+
+	public void setPositionY(int positionY) {
+		PositionY = positionY;
 	}
 
 }
