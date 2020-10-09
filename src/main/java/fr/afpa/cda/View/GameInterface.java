@@ -27,9 +27,6 @@ public class GameInterface extends JFrame {
 
 		ImageIcon icon;
 
-		icon = new ImageIcon(getClass().getResource("/plane.png"));
-		System.out.println(icon);
-
 		// Instanciations des différents élements
 		JFrame fenetre = new JFrame("Mon jeu d'avion");
 
