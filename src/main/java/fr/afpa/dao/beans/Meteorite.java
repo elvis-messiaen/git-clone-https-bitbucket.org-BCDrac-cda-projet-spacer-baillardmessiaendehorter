@@ -1,6 +1,6 @@
 package fr.afpa.dao.beans;
 
-abstract class MeteoriteDAO implements FlyingObject {
+abstract class Meteorite implements FlyingObject {
 
 	private int type;
 	private int size;
