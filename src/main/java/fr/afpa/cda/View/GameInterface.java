@@ -22,15 +22,19 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 public class GameInterface extends JFrame {
+
 	public void fenetre() {
+
 		ImageIcon icon;
 
-		// Instanciations des différents élements
+		// Instanciations des diffÃ©rents Ã©lements
 		JFrame fenetre = new JFrame("Mon jeu d'avion");
+
 		JPanel panelDisplay = new JPanel();
 		JPanel panelButtons = new JPanel();
 		JLabel infos = new JLabel(" ");
 		JLabel background = new JLabel();
+
 		JLabel score = new JLabel("  score");
 		JLabel name = new JLabel("name");
 		JLabel hp = new JLabel("hp  ");
@@ -42,7 +46,7 @@ public class GameInterface extends JFrame {
 
 		Border blackline = BorderFactory.createLineBorder(Color.black, 3);
 
-		// Paramétrage des éléments
+		// ParamÃ©trage des Ã©lÃ©ments
 
 		// Elements JFrame
 		fenetre.setLayout(new BorderLayout());
@@ -76,18 +80,17 @@ public class GameInterface extends JFrame {
 //		panelButtons.add(downArrow, BorderLayout.SOUTH);
 //		panelButtons.add(rightArrow, BorderLayout.EAST);
 
-		// Préparation de l'image à afficher dans le label "keys", qui ira se placer
+		// PrÃ©paration de l'image Ã  afficher dans le label "keys", qui ira se placer
 		// dans le JPanel "panelButtons"
 		try {
-			BufferedImage img = ImageIO.read(new File("F:/Avion/keys.jpg"));	
+			BufferedImage img = ImageIO.read(new File("F:/Avion/keys.jpg"));
 			icon = new ImageIcon(img);
 			keys.setIcon(icon);
 		} catch (IOException ie) {
 			System.out.println(ie.getMessage());
 		}
 
-		// Préparation de l'image à afficher dans le Panel panelDisplay
-
+		// PrÃ©paration de l'image Ã  afficher dans le Panel panelDisplay
 		try {
 			BufferedImage img2 = ImageIO.read(new File("F:/Avion/background.jpg"));
 			icon = new ImageIcon(img2);
@@ -98,7 +101,6 @@ public class GameInterface extends JFrame {
 		}
 
 		// Assemblage du panel panelButtons
-
 		panelButtons.add(keys, BorderLayout.CENTER);
 //		panelButtons.add(leftArrow, BorderLayout.WEST);
 //		panelButtons.add(upArrow, BorderLayout.NORTH);
@@ -108,23 +110,21 @@ public class GameInterface extends JFrame {
 
 		// Assemblage du panel panelDisplay avec le label "infos" comme contenant pour
 		// "score", "name" et "hp"
-
 		infos.add(score, BorderLayout.WEST);
 		infos.add(name, BorderLayout.CENTER);
 		infos.add(hp, BorderLayout.EAST);
 		infos.setVisible(true);
 
 		panelDisplay.add(infos, BorderLayout.NORTH);
+		
 		// panelDisplay.add(new JTextField(" "), BorderLayout.CENTER);
 		panelDisplay.add(background, BorderLayout.CENTER);
 
-		// Assemblage de la fenêtre
-
+		// Assemblage de la fenÃªtre
 		fenetre.add(panelDisplay, BorderLayout.CENTER);
 		fenetre.add(panelButtons, BorderLayout.SOUTH);
 
 		fenetre.setVisible(true);
-
 
 	}
 
