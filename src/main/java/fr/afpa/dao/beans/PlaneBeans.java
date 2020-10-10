@@ -28,7 +28,8 @@ public class PlaneBeans extends JPanel {
 	public PlaneBeans() {
 		super();
 
-
+		this.positionX = 300;
+		this.PositionY = 400;
 		icoPlane = new ImageIcon(getClass().getResource("/plane.png"));
 		this.plane = this.icoPlane.getImage();
 		this.setFocusable(true);
@@ -38,8 +39,7 @@ public class PlaneBeans extends JPanel {
 	@Override
 	protected void paintComponent(Graphics graph) {
 		super.paintComponents(graph);
-		this.positionX = 300;
-		this.PositionY = 400;
+		
 		Graphics graph2 = (Graphics2D)graph;
 		graph2.drawImage(plane,positionX,PositionY,null);
 	}

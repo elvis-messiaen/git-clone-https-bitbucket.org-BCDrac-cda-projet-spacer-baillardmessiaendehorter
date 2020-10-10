@@ -10,26 +10,30 @@ public class Keyboard implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT && Test.plane.getPositionX() != 598) {
-			System.out.println("doite");
-			Test.plane.setPositionX(+1);
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT && Test.plane.getPositionX() != 2) {
-			Test.plane.setPositionX(-1);
-			System.out.println("gauche");
-		} else if (e.getKeyCode() == KeyEvent.VK_UP && Test.plane.getPositionY() != 450) {
-			Test.plane.setPositionX(+1);
-			System.out.println("haut");
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN && Test.plane.getPositionY() != 150) {
-			Test.plane.setPositionX(-1);
-			System.out.println("bas");
+		/*
+		 * avion bouge 
+		 * mais je doit ajouté le Threads 
+		 * car il faut gerer la latence
+		 */
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT && Test.plane.getPositionX() != 540) {
+			Test.plane.setPositionX(Test.plane.getPositionX()+2);
+			Test.plane.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT && Test.plane.getPositionX() != 10) {
+			Test.plane.setPositionX(Test.plane.getPositionX()-2);
+			Test.plane.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN && Test.plane.getPositionY() != 400) {
+			Test.plane.setPositionY(Test.plane.getPositionY()+1);
+			Test.plane.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_UP && Test.plane.getPositionY() != 150) {
+			Test.plane.setPositionY(Test.plane.getPositionY()-1);
+			Test.plane.repaint();
+			System.out.println(Test.plane.getPositionY());
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-//		Test.plane.setPositionX(0);
-//		Test.plane.setPositionY(0);
+
 	}
 
 	@Override
