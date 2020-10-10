@@ -16,13 +16,13 @@ public class Keyboard implements KeyListener {
 		 * car il faut gerer la latence
 		 */
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Test.game.getPlane().setSpeedX(2);
+			Test.game.getPlane().setSpeedX(3);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Test.game.getPlane().setSpeedX(-2);
+			Test.game.getPlane().setSpeedX(-3);
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Test.game.getPlane().setSpeedY(2);
+			Test.game.getPlane().setSpeedY(3);
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Test.game.getPlane().setSpeedY(-2);
+			Test.game.getPlane().setSpeedY(-3);
 
 		}
 	}

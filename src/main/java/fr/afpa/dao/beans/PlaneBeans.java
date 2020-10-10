@@ -32,8 +32,8 @@ public class PlaneBeans {
 		super();
 
 		this.positionX = 300;
-		this.PositionY = 580;
-		icoPlane = new ImageIcon(getClass().getResource("/plane.png"));
+		this.PositionY = 560;
+		icoPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
 		this.plane = this.icoPlane.getImage();
 	}
 /*
@@ -45,14 +45,14 @@ public class PlaneBeans {
 		this.positionX += speedX;
 		this.PositionY += speedY;
 		
-		if (positionX > 540) {
-			positionX = 540;
+		if (positionX > 490) {
+			positionX = 490;
 		} else if (positionX < 10) {
 			positionX = 10;
 		}
 		
-		if (PositionY > 580) {
-			PositionY = 580;
+		if (PositionY > 560) {
+			PositionY = 560;
 		} else if (PositionY < 100) {
 			PositionY = 100;
 		}
