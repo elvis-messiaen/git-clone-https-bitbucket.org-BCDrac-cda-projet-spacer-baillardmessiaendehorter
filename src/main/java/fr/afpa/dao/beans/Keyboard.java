@@ -26,7 +26,10 @@ public class Keyboard implements KeyListener {
 
 		}
 	}
-
+/*
+ * fonction pour definir l'action lorsque on lache un bouton
+ * l'avion se stop
+ */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {

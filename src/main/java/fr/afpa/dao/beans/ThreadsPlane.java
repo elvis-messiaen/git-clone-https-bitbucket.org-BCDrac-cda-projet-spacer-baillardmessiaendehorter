@@ -5,6 +5,7 @@ import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
 public class ThreadsPlane implements Runnable {
 /*
  * classe pour rendre le deplacement de l'avion plus fluide
+ * appel de la fonction mouvePlane pour de
  */
 	@Override
 	public void run() {

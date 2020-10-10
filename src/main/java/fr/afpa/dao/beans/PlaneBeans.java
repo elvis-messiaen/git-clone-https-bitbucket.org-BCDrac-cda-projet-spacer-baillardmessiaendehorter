@@ -42,6 +42,8 @@ public class PlaneBeans extends JPanel {
 	}
 /*
  * calcul la position en fonction de la vitesse
+ * empeche la sortie de l'écran sur une taille de fenetre fixe 
+ * 
  */
 	public void mouvePlane() {
 		this.positionX += speedX;
