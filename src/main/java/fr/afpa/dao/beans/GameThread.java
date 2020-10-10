@@ -2,16 +2,18 @@ package fr.afpa.dao.beans;
 
 import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
 
-public class ThreadsPlane implements Runnable {
+public class GameThread implements Runnable {
 /*
  * classe pour rendre le deplacement de l'avion plus fluide
- * appel de la fonction mouvePlane pour de
+ * appel de la fonction mouvePlane pour definir postion avion
+ * en fonction de sa vitesse 
+ * thread(1000/60) niveau de rafraichissment d'image équivalent jeu rps
  */
 	@Override
 	public void run() {
 		while (true) {
-			Test.plane.mouvePlane();
-			Test.plane.repaint();
+			Test.game.logic();
+			Test.game.repaint();
 			try {
 				
 				Thread.sleep(1000/60);

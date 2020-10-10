@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PlaneBeans extends JPanel {
+public class PlaneBeans {
 	/*
 	 * attribut de l'avion
 	 */
@@ -32,13 +32,9 @@ public class PlaneBeans extends JPanel {
 		super();
 
 		this.positionX = 300;
-		this.PositionY = 400;
+		this.PositionY = 580;
 		icoPlane = new ImageIcon(getClass().getResource("/plane.png"));
 		this.plane = this.icoPlane.getImage();
-		this.setFocusable(true);
-		this.addKeyListener(new Keyboard());
-		Thread latencePlane = new Thread(new ThreadsPlane());
-		latencePlane.start();
 	}
 /*
  * calcul la position en fonction de la vitesse
@@ -55,17 +51,14 @@ public class PlaneBeans extends JPanel {
 			positionX = 10;
 		}
 		
-		if (PositionY > 400) {
-			PositionY = 400;
-		} else if (PositionY < 150) {
-			PositionY = 150;
+		if (PositionY > 580) {
+			PositionY = 580;
+		} else if (PositionY < 100) {
+			PositionY = 100;
 		}
 	}
 	
-	@Override
-	protected void paintComponent(Graphics graph) {
-		super.paintComponents(graph);
-		Graphics graph2 = (Graphics2D)graph;
+	protected void draw(Graphics graph2) {
 		graph2.drawImage(plane,positionX,PositionY,null);
 	}
 

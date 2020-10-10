@@ -21,10 +21,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import fr.afpa.dao.beans.PlaneBeans;
+
 public class GameInterface extends JFrame {
-
+	public static PlaneBeans plane;
 	public void fenetre() {
-
+		
 		ImageIcon icon;
 
 		// Instanciations des différents élements
