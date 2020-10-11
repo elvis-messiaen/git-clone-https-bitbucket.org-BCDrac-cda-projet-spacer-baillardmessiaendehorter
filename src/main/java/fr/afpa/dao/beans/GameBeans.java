@@ -78,8 +78,8 @@ public class GameBeans extends JPanel {
 
 		this.gameBackground.draw(graph2);
 		this.arrows.draw(graph2);
-		paintMeteorites(graph2);
 		this.plane.draw(graph2);
+		paintMeteorites(graph2);
 	}
 
 	protected void paintMeteorites(Graphics g) {
