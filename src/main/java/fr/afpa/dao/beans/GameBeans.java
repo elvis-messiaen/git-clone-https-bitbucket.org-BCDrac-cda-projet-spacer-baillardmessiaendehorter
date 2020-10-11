@@ -37,6 +37,7 @@ public class GameBeans extends JPanel {
 		this.addKeyListener(new Keyboard());
 
 		Thread gameThread = new Thread(new GameThread());
+		gameThread.setPriority(Thread.MAX_PRIORITY);
 		Thread meteoritesSpawner = new Thread(new Runnable() {
 			public void run() {
 				
