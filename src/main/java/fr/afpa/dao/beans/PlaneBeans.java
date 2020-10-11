@@ -21,6 +21,8 @@ public class PlaneBeans {
 	private int positionY;
 	private int speedX;
 	private int speedY;
+	private int largeur = 112;
+	private int hauteur = 85;
 
 	public PlaneBeans() {
 		super();
@@ -88,5 +90,18 @@ public class PlaneBeans {
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
+	public int getLargeur() {
+		return largeur;
+	}
+	public void setLargeur(int largeur) {
+		this.largeur = largeur;
+	}
+	public int getHauteur() {
+		return hauteur;
+	}
+	public void setHauteur(int hauteur) {
+		this.hauteur = hauteur;
+	}
+	
 	
 }

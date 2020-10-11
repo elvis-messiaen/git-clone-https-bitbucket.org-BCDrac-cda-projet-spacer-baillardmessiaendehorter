@@ -22,6 +22,7 @@ public class GameBeans extends JPanel {
 	private List<MeteoriteBeans> meteorites;
 	private BackgroundBeans gameBackground;
 	private ArrowBeans arrows;
+	private GameOverBeans gameOver;
 	Random rand = new Random();
 
 	public GameBeans() {
@@ -32,7 +33,7 @@ public class GameBeans extends JPanel {
 		this.meteorites = new ArrayList<MeteoriteBeans>();
 		this.gameBackground = new BackgroundBeans();
 		this.arrows = new ArrowBeans();
-
+		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
 		this.addKeyListener(new Keyboard());
 
@@ -72,15 +73,14 @@ public class GameBeans extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics graph) {
-
 		super.paintComponents(graph);
-
 		Graphics graph2 = (Graphics2D) graph;
-
-		this.gameBackground.draw(graph2);
+		
+		this.gameOver.draw(graph2);
+		//this.gameBackground.draw(graph2);
 		this.arrows.draw(graph2);
-		this.plane.draw(graph2);
-		paintMeteorites(graph2);
+		//this.plane.draw(graph2);
+		//paintMeteorites(graph2);
 	}
 
 	protected void paintMeteorites(Graphics g) {
