@@ -39,8 +39,9 @@ public class GameBeans extends JPanel {
 		Thread gameThread = new Thread(new GameThread());
 		Thread meteoritesSpawner = new Thread(new Runnable() {
 			public void run() {
+				
 				while (true) {
-					if (meteorites.size() < 3) {
+					if (meteorites.size() != 3) {
 						try {
 							generateMeteorites();
 							Thread.sleep(1000);
@@ -48,7 +49,7 @@ public class GameBeans extends JPanel {
 							e.printStackTrace();
 						}
 					}
-					//meteoriteDie();
+					meteoriteDie();
 				}
 			}
 		});
@@ -105,9 +106,10 @@ public class GameBeans extends JPanel {
 	private void meteoriteDie() {
 
 		if (this.meteorites.size() > 0) {
-			for (MeteoriteBeans meteorite : this.meteorites) {
-				if (meteorite.getPositionY() == 620) {
-					this.meteorites.remove(meteorite);
+			for (int i = 0; i < this.meteorites.size(); i++) {
+				if (this.meteorites.get(i).isDead()) {
+					this.meteorites.remove(meteorites.get(i));
+					generateMeteorites();
 				}
 			}
 		}
