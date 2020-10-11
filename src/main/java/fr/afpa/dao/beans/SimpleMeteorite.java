@@ -20,6 +20,7 @@ public class SimpleMeteorite extends MeteoriteBeans implements FlyingObject {
 	private int positionY = 80;
 	private int speedX;
 	private int speedY = 2;
+	private boolean isDead = false;
 	
 	public SimpleMeteorite(int positionX) {
 		
@@ -50,6 +51,7 @@ public class SimpleMeteorite extends MeteoriteBeans implements FlyingObject {
 
 		if (this.positionY > 620) {
 			this.positionY = 620;
+			this.isDead = true;
 		} else if (this.positionY < 100) {
 			this.positionY = 100;
 		}
