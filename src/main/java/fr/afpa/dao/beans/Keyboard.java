@@ -11,8 +11,6 @@ public class Keyboard implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		/*
 		 * avion bouge 
-		 * mais je doit ajouté le Threads 
-		 * car il faut gerer la latence
 		 */
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Test.game.getPlane().setSpeedX(3);

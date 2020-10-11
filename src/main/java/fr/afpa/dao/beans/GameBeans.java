@@ -15,7 +15,8 @@ import lombok.Setter;
 @Setter
 public class GameBeans extends JPanel {
 	/*
-	 * attribut de l'avion
+	 * classe de jeu
+	 * on integre les composants avion,fond,fleche,météorites
 	 */
 	private PlaneBeans plane;
 	private List<MeteoriteBeans> meteorites;

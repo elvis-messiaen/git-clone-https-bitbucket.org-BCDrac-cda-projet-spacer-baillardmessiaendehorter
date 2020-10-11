@@ -55,5 +55,38 @@ public class PlaneBeans {
 
 	protected void draw(Graphics graph) {
 		graph.drawImage(this.plane, this.positionX, this.positionY, null);
+		
 	}
+	
+	/*
+	 * Getter et Setter ne pas enlevé même si LOMBOK
+	 * car sinon la classe Keyboard ne la voit pas !
+	 * on les enleve à la fin du projet car j'bokai un souci avec le mac 
+	 * je ne peux pas joindre le jar Lom
+	 */
+	public int getPositionX() {
+		return positionX;
+	}
+	public void setPositionX(int positionX) {
+		this.positionX = positionX;
+	}
+	public int getPositionY() {
+		return positionY;
+	}
+	public void setPositionY(int positionY) {
+		this.positionY = positionY;
+	}
+	public int getSpeedX() {
+		return speedX;
+	}
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+	public int getSpeedY() {
+		return speedY;
+	}
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
+	}
+	
 }
