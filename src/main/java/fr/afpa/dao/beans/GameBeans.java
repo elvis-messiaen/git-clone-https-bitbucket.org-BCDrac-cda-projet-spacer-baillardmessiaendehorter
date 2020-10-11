@@ -37,6 +37,14 @@ public class GameBeans extends JPanel {
 		this.setFocusable(true);
 		this.addKeyListener(new Keyboard());
 
+		
+		// le Thread est executer avant la fin du constructeur
+		// comme c'est aléatoire :
+		// plantage du jeu
+		//  idéal sortir le Threads du constructeur vers une fonction
+		// et mettre  
+		// - gameThread.start();
+		// - meteoritesSpawner.start();
 		Thread gameThread = new Thread(new GameThread());
 		gameThread.setPriority(Thread.MAX_PRIORITY);
 		Thread meteoritesSpawner = new Thread(new Runnable() {
@@ -78,11 +86,11 @@ public class GameBeans extends JPanel {
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
 		
-		this.gameOver.draw(graph2);
-		//this.gameBackground.draw(graph2);
+		//this.gameOver.draw(graph2);
+		this.gameBackground.draw(graph2);
 		this.arrows.draw(graph2);
-		//this.plane.draw(graph2);
-		//paintMeteorites(graph2);
+		this.plane.draw(graph2);
+		paintMeteorites(graph2);
 	}
 
 	protected void paintMeteorites(Graphics g) {

@@ -27,7 +27,7 @@ public class BackgroundBeans {
 		
 		super();
 		
-		this.icoBackground = new ImageIcon(getClass().getResource("/starfall.gif"));
+		this.icoBackground = new ImageIcon(getClass().getResource("/starfall2.gif"));
 		this.background = this.icoBackground.getImage();
 	}
 

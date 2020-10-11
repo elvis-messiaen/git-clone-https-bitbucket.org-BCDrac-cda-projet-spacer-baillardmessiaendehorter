@@ -16,6 +16,10 @@ public class PlaneBeans {
 	 */
 	private ImageIcon icoPlane;
 	private Image plane;
+	private ImageIcon icoPlaneRight;
+	private Image planeRight;
+	private ImageIcon icoPlaneLeft;
+	private Image planeLeft;
 	private int healtPoint;
 	private int positionX;
 	private int positionY;
@@ -28,9 +32,16 @@ public class PlaneBeans {
 		super();
 
 		this.positionX = 300;
-		this.positionY = 560;
+		this.positionY = 540;
+		
 		this.icoPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
 		this.plane = this.icoPlane.getImage();
+		
+		this.icoPlaneRight = new ImageIcon(getClass().getResource("/plane2right.gif"));
+		this.planeRight = this.icoPlaneRight.getImage();
+		
+		this.icoPlaneLeft = new ImageIcon(getClass().getResource("/plane2left.gif"));
+		this.planeLeft = this.icoPlaneLeft.getImage();
 	}
 /*
  * calcul la position en fonction de la vitesse
@@ -56,15 +67,19 @@ public class PlaneBeans {
 	}
 
 	protected void draw(Graphics graph) {
-		graph.drawImage(this.plane, this.positionX, this.positionY, null);
-		
+		if (speedX < 0)
+			graph.drawImage(this.planeLeft, this.positionX, this.positionY, null);
+		else if (speedX > 0)
+			graph.drawImage(this.planeRight, this.positionX, this.positionY, null);
+		else
+			graph.drawImage(this.plane, this.positionX, this.positionY, null);
 	}
 	
 	/*
 	 * Getter et Setter ne pas enlevé même si LOMBOK
 	 * car sinon la classe Keyboard ne la voit pas !
 	 * on les enleve à la fin du projet car j'bokai un souci avec le mac 
-	 * je ne peux pas joindre le jar Lom
+	 * je ne peux pas joindre le jar Lombok 
 	 */
 	public int getPositionX() {
 		return positionX;
@@ -102,6 +117,45 @@ public class PlaneBeans {
 	public void setHauteur(int hauteur) {
 		this.hauteur = hauteur;
 	}
+	
+	
+	public ImageIcon getIcoPlane() {
+		return icoPlane;
+	}
+	public void setIcoPlane(ImageIcon icoPlane) {
+		this.icoPlane = icoPlane;
+	}
+	public Image getPlane() {
+		return plane;
+	}
+	public void setPlane(Image plane) {
+		this.plane = plane;
+	}
+	public ImageIcon getIcoPlaneRight() {
+		return icoPlaneRight;
+	}
+	public void setIcoPlaneRight(ImageIcon icoPlaneRight) {
+		this.icoPlaneRight = icoPlaneRight;
+	}
+	public Image getPlaneRight() {
+		return planeRight;
+	}
+	public void setPlaneRight(Image planeRight) {
+		this.planeRight = planeRight;
+	}
+	public ImageIcon getIcoPlaneLeft() {
+		return icoPlaneLeft;
+	}
+	public void setIcoPlaneLeft(ImageIcon icoPlaneLeft) {
+		this.icoPlaneLeft = icoPlaneLeft;
+	}
+	public Image getPlaneLeft() {
+		return planeLeft;
+	}
+	public void setPlaneLeft(Image planeLeft) {
+		this.planeLeft = planeLeft;
+	}
+	
 	
 	
 }
