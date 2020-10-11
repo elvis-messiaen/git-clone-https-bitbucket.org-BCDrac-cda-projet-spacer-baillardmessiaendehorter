@@ -94,7 +94,7 @@ public class GameBeans extends JPanel {
 	private void generateMeteorites() {
 
 		// int meteoriteType = this.rand.nextInt(5);
-		int randPositionX = this.rand.nextInt(300);
+		int randPositionX = this.rand.nextInt(540);
 
 		// switch (meteoriteType) {
 		// case 0:

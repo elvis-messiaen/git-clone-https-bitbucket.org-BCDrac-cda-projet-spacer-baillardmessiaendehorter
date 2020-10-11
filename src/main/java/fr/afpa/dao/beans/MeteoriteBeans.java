@@ -78,5 +78,9 @@ abstract class MeteoriteBeans extends JPanel implements FlyingObject {
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
+	
+	public boolean isDead() {
+		return this.isDead;
+	}
 
 }
