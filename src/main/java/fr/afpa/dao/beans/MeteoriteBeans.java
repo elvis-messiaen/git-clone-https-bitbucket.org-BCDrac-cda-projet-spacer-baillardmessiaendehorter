@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-abstract class MeteoriteBeans extends JPanel implements FlyingObject {
+abstract class MeteoriteBeans implements FlyingObject {
 
 	private ImageIcon meteoriteIcon;
 	private Image meteoriteImage;
@@ -22,6 +22,8 @@ abstract class MeteoriteBeans extends JPanel implements FlyingObject {
 	private int speedX;
 	private int speedY = 2;
 	private boolean isDead = false;
+	private int largeur = 20;
+	private int hauteur = 20;
 	
 	
 	@Override
@@ -82,5 +84,22 @@ abstract class MeteoriteBeans extends JPanel implements FlyingObject {
 	public boolean isDead() {
 		return this.isDead;
 	}
+
+	public int getLargeur() {
+		return largeur;
+	}
+
+	public void setLargeur(int largeur) {
+		this.largeur = largeur;
+	}
+
+	public int getHauteur() {
+		return hauteur;
+	}
+
+	public void setHauteur(int hauteur) {
+		this.hauteur = hauteur;
+	}
+	
 
 }
