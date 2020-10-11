@@ -1,17 +1,11 @@
 package fr.afpa.dao.beans;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
-import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -24,16 +18,16 @@ public class PlaneBeans {
 	private Image plane;
 	private int healtPoint;
 	private int positionX;
-	private int PositionY;
+	private int positionY;
 	private int speedX;
 	private int speedY;
-	
+
 	public PlaneBeans() {
 		super();
 
 		this.positionX = 300;
-		this.PositionY = 560;
-		icoPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
+		this.positionY = 560;
+		this.icoPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
 		this.plane = this.icoPlane.getImage();
 	}
 /*
@@ -41,9 +35,10 @@ public class PlaneBeans {
  * empeche la sortie de l'écran sur une taille de fenetre fixe 
  * 
  */
-	public void mouvePlane() {
+	public void movePlane() {
+		
 		this.positionX += speedX;
-		this.PositionY += speedY;
+		this.positionY += speedY;
 		
 		if (positionX > 490) {
 			positionX = 490;
@@ -51,38 +46,14 @@ public class PlaneBeans {
 			positionX = 10;
 		}
 		
-		if (PositionY > 560) {
-			PositionY = 560;
-		} else if (PositionY < 100) {
-			PositionY = 100;
+		if (positionY > 560) {
+			positionY = 560;
+		} else if (positionY < 100) {
+			positionY = 100;
 		}
 	}
-	
-	protected void draw(Graphics graph2) {
-		graph2.drawImage(plane,positionX,PositionY,null);
-	}
 
-	public int getPositionX() {
-		return positionX;
-	}
-
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
-	}
-
-	public int getPositionY() {
-		return PositionY;
-	}
-
-	public void setPositionY(int positionY) {
-		PositionY = positionY;
-	}
-
-	public void setSpeedX(int speedX) {
-		this.speedX = speedX;
-	}
-	
-	public void setSpeedY(int speedY) {
-		this.speedY = speedY;
+	protected void draw(Graphics graph) {
+		graph.drawImage(this.plane, this.positionX, this.positionY, null);
 	}
 }

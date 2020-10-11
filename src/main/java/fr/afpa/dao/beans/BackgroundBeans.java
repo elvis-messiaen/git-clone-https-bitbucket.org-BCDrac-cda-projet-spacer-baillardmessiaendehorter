@@ -22,16 +22,17 @@ public class BackgroundBeans {
 	 */
 	private ImageIcon icoBackground;
 	private Image background;
-	
+
 	public BackgroundBeans() {
+		
 		super();
-		icoBackground = new ImageIcon(getClass().getResource("/starfall.gif"));
+		
+		this.icoBackground = new ImageIcon(getClass().getResource("/starfall.gif"));
 		this.background = this.icoBackground.getImage();
 	}
 
-	
 	protected void draw(Graphics graph2) {
-		graph2.drawImage(background,0,75,null);
+		graph2.drawImage(this.background, 0, 75, null);
 	}
 
 }

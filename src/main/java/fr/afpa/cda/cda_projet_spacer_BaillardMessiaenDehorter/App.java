@@ -12,9 +12,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        GameInterface game = new GameInterface();
-        game.fenetre();
-        
-       
+        //GameInterface game = new GameInterface();
+        //game.fenetre();
+   
     }
 }
