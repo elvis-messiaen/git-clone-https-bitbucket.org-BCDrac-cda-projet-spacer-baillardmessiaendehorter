@@ -100,7 +100,16 @@ public class GameBusiness extends JPanel {
 			paintMeteorites(graph2);
 		
 		}
-		if (score.getScore() <= score.getScoreMax()) {
+		if (score.getScore() <=9) {
+			graph2.setFont(poli);
+			String t = String.valueOf("Score : 00" + this.score.getScore());
+			graph2.drawString(t,25,50);
+		}else if (score.getScore() > 9 && score.getScore() <= 99) {
+			graph2.setFont(poli);
+			String t = String.valueOf("Score : 0" + this.score.getScore());
+			graph2.drawString(t,25,50);
+		}
+		else if (score.getScore() > 99 || score.getScore()<= score.getScoreMax()) {
 		graph2.setFont(poli);
 		String t = String.valueOf("Score : " + this.score.getScore());
 		graph2.drawString(t,25,50);
