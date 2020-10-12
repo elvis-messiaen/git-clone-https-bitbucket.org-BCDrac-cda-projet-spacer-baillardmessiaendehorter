@@ -15,57 +15,24 @@ import lombok.Setter;
 @Setter
 public class MeteoriteImpactControl {
 
-	private PlaneBeans plane;
-	private MeteoriteBeans meteorite;
 
-	public MeteoriteImpactControl(PlaneBeans plane, MeteoriteBeans meteorite) {
-		this.plane = plane;
-		this.meteorite = meteorite;
-	}
-
-	
 	/**
 	 * Vérifie l'impact entre l'avion et la météorite
 	 * 
 	 * @return boolean
 	 */
-	public boolean meteorContact() {
-		return checkPositionLeft() && checkPositionRight() && checkPositionTop() && checkPositionBottom();
-	}
+	public static boolean meteorContact(PlaneBeans plane,MeteoriteBeans meteorite) {
 
-	
-	/**
-	 * Vérifie l'impact de gauche
-	 * @return boolean
-	 */
-	private boolean checkPositionLeft() {
-		return this.plane.getPositionX() < this.meteorite.getPositionX() + this.meteorite.getWidth();
-	}
+		if (plane.getPositionX() < meteorite.getPositionX() + meteorite.getWidth()
+				&& plane.getPositionX() + plane.getLargeur() > meteorite.getPositionX()
+				&& plane.getPositionY() < meteorite.getPositionY() + meteorite.getHeight()
+				&& plane.getPositionY() + plane.getHauteur() > meteorite.getPositionY()) {
 
-	
-	/**
-	 * Vérifie l'impact de droite
-	 * @return boolean
-	 */
-	private boolean checkPositionRight() {
-		return this.plane.getPositionX() + this.plane.getLargeur() > this.meteorite.getPositionX();
-	}
+			return true;
+		}
+		return false;
 
-	
-	/**
-	 * Vérifie l'impact du haut
-	 * @return boolean
-	 */
-	private boolean checkPositionTop() {
-		return this.plane.getPositionY() < this.meteorite.getPositionY() + this.meteorite.getWidth();
 	}
+	
 
-	
-	/**
-	 * Vérifie l'impact du bas
-	 * @return boolean
-	 */
-	private boolean checkPositionBottom() {
-		return this.plane.getPositionY() + this.plane.getHauteur() > this.meteorite.getPositionY();
-	}
 }

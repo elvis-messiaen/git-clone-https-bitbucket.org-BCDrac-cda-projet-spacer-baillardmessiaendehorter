@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
 import fr.afpa.dao.beans.GameOverBeans;
@@ -29,6 +30,7 @@ public class GameBusiness extends JPanel {
 	private Thread meteoritesSpawner;
 	private Thread gameThread;
 	private Thread meteoriteThread;
+	private boolean gameO;
 
 	public GameBusiness() {
 
@@ -41,7 +43,7 @@ public class GameBusiness extends JPanel {
 		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener());
-
+		this.gameO = false;
 		
 		// le Thread est executé avant la fin du constructeur
 		// comme c'est aléatoire :
@@ -69,23 +71,29 @@ public class GameBusiness extends JPanel {
 	public void logic() {
 
 		this.plane.movePlane();
-		for (int i = 0; i < this.meteorites.size(); i++) {
-			meteorites.get(i).move();
+		for (MeteoriteBeans meteorite : this.meteorites) {
+			meteorite.move();
+			if (MeteoriteImpactControl.meteorContact(plane,  meteorite)) {
+				this.gameO = true;
+
+			}
 		}
 	}
 
 	@Override
 	protected void paintComponent(Graphics graph) {
-		
 		super.paintComponents(graph);
-		
 		Graphics graph2 = (Graphics2D) graph;
-		
-		//this.gameOver.draw(graph2);
-		this.gameBackground.draw(graph2);
-		this.arrows.draw(graph2);
-		this.plane.draw(graph2);
-		paintMeteorites(graph2);
+		if (gameO == true) {
+			this.gameOver.draw(graph2);
+		} else {
+			this.gameBackground.draw(graph2);
+			this.arrows.draw(graph2);
+			this.plane.draw(graph2);
+			paintMeteorites(graph2);
+
+		}
+
 	}
 
 	protected void paintMeteorites(Graphics graph) {
