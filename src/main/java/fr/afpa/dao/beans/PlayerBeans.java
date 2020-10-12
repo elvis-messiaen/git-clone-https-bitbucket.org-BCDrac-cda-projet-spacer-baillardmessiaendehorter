@@ -2,7 +2,7 @@ package fr.afpa.dao.beans;
 
 import java.time.LocalDateTime;
 
-public class Player {
+public class PlayerBeans {
 	
 	private String name;
 	private LocalDateTime gameStartedDate;

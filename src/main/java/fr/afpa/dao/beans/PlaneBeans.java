@@ -14,11 +14,11 @@ public class PlaneBeans {
 	/*
 	 * attribut de l'avion
 	 */
-	private ImageIcon icoPlane;
+	private ImageIcon iconPlane;
 	private Image plane;
-	private ImageIcon icoPlaneRight;
+	private ImageIcon iconPlaneRight;
 	private Image planeRight;
-	private ImageIcon icoPlaneLeft;
+	private ImageIcon iconPlaneLeft;
 	private Image planeLeft;
 	private int healtPoint;
 	private int positionX;
@@ -34,14 +34,14 @@ public class PlaneBeans {
 		this.positionX = 300;
 		this.positionY = 540;
 		
-		this.icoPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
-		this.plane = this.icoPlane.getImage();
+		this.iconPlane = new ImageIcon(getClass().getResource("/plane2.gif"));
+		this.plane = this.iconPlane.getImage();
 		
-		this.icoPlaneRight = new ImageIcon(getClass().getResource("/plane2right.gif"));
-		this.planeRight = this.icoPlaneRight.getImage();
+		this.iconPlaneRight = new ImageIcon(getClass().getResource("/plane2right.gif"));
+		this.planeRight = this.iconPlaneRight.getImage();
 		
-		this.icoPlaneLeft = new ImageIcon(getClass().getResource("/plane2left.gif"));
-		this.planeLeft = this.icoPlaneLeft.getImage();
+		this.iconPlaneLeft = new ImageIcon(getClass().getResource("/plane2left.gif"));
+		this.planeLeft = this.iconPlaneLeft.getImage();
 	}
 /*
  * calcul la position en fonction de la vitesse
@@ -50,29 +50,35 @@ public class PlaneBeans {
  */
 	public void movePlane() {
 		
-		this.positionX += speedX;
-		this.positionY += speedY;
+		this.positionX += this.speedX;
+		this.positionY += this.speedY;
 		
-		if (positionX > 490) {
-			positionX = 490;
-		} else if (positionX < 10) {
-			positionX = 10;
+		if (this.positionX > 490) {
+			this.positionX = 490;
+			
+		} else if (this.positionX < 10) {
+			this.positionX = 10;
 		}
 		
-		if (positionY > 560) {
-			positionY = 560;
-		} else if (positionY < 100) {
-			positionY = 100;
+		if (this.positionY > 560) {
+			this.positionY = 560;
+			
+		} else if (this.positionY < 100) {
+			this.positionY = 100;
 		}
 	}
 
-	protected void draw(Graphics graph) {
-		if (speedX < 0)
+	public void draw(Graphics graph) {
+		
+		if (this.speedX < 0) {
 			graph.drawImage(this.planeLeft, this.positionX, this.positionY, null);
-		else if (speedX > 0)
+			
+		} else if (this.speedX > 0) {
 			graph.drawImage(this.planeRight, this.positionX, this.positionY, null);
-		else
+			
+		} else {
 			graph.drawImage(this.plane, this.positionX, this.positionY, null);
+		}
 	}
 	
 	/*
@@ -82,80 +88,87 @@ public class PlaneBeans {
 	 * je ne peux pas joindre le jar Lombok 
 	 */
 	public int getPositionX() {
-		return positionX;
+		return this.positionX;
 	}
 	public void setPositionX(int positionX) {
 		this.positionX = positionX;
 	}
 	public int getPositionY() {
-		return positionY;
+		return this.positionY;
 	}
 	public void setPositionY(int positionY) {
 		this.positionY = positionY;
 	}
 	public int getSpeedX() {
-		return speedX;
+		return this.speedX;
 	}
 	public void setSpeedX(int speedX) {
 		this.speedX = speedX;
 	}
 	public int getSpeedY() {
-		return speedY;
+		return this.speedY;
 	}
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
 	public int getLargeur() {
-		return largeur;
+		return this.largeur;
 	}
 	public void setLargeur(int largeur) {
 		this.largeur = largeur;
 	}
 	public int getHauteur() {
-		return hauteur;
+		return this.hauteur;
 	}
 	public void setHauteur(int hauteur) {
 		this.hauteur = hauteur;
 	}
 	
+	public ImageIcon getIconPlane() {
+		return this.iconPlane;
+	}
 	
-	public ImageIcon getIcoPlane() {
-		return icoPlane;
+	public void setIconPlane(ImageIcon icoPlane) {
+		this.iconPlane = icoPlane;
 	}
-	public void setIcoPlane(ImageIcon icoPlane) {
-		this.icoPlane = icoPlane;
-	}
+	
 	public Image getPlane() {
-		return plane;
+		return this.plane;
 	}
+	
 	public void setPlane(Image plane) {
 		this.plane = plane;
 	}
-	public ImageIcon getIcoPlaneRight() {
-		return icoPlaneRight;
+	
+	public ImageIcon getIconPlaneRight() {
+		return this.iconPlaneRight;
 	}
-	public void setIcoPlaneRight(ImageIcon icoPlaneRight) {
-		this.icoPlaneRight = icoPlaneRight;
+	
+	public void setIconPlaneRight(ImageIcon icoPlaneRight) {
+		this.iconPlaneRight = icoPlaneRight;
 	}
+	
 	public Image getPlaneRight() {
-		return planeRight;
+		return this.planeRight;
 	}
+	
 	public void setPlaneRight(Image planeRight) {
 		this.planeRight = planeRight;
 	}
-	public ImageIcon getIcoPlaneLeft() {
-		return icoPlaneLeft;
+	
+	public ImageIcon getIconPlaneLeft() {
+		return this.iconPlaneLeft;
 	}
-	public void setIcoPlaneLeft(ImageIcon icoPlaneLeft) {
-		this.icoPlaneLeft = icoPlaneLeft;
+	
+	public void setIconPlaneLeft(ImageIcon icoPlaneLeft) {
+		this.iconPlaneLeft = icoPlaneLeft;
 	}
+	
 	public Image getPlaneLeft() {
-		return planeLeft;
+		return this.planeLeft;
 	}
+	
 	public void setPlaneLeft(Image planeLeft) {
 		this.planeLeft = planeLeft;
 	}
-	
-	
-	
 }

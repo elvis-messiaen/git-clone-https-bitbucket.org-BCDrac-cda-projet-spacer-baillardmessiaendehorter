@@ -4,28 +4,38 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import fr.afpa.dao.beans.GameConstants;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class MeteoriteBeans implements FlyingObject {
+public class SimpleMeteoriteBeans extends MeteoriteBeans implements FlyingObject {
 
-	private ImageIcon meteoriteIcon;
+	private ImageIcon iconMeteorite;
 	private Image imageMeteorite;
-	private int damage;
+	private int damage = 1;
 	private int meteoriteSize;
 	private int positionX;
 	private int positionY = 80;
 	private int speedX;
 	private int speedY = 2;
 	private boolean dead = false;
-	private int width = 20;
-	private int height = 20;
 	
-	
+	public SimpleMeteoriteBeans(int positionX) {
+		
+		super();
+		
+		this.positionX = positionX;
+		
+		this.iconMeteorite = new ImageIcon(getClass().getResource("/meteorite.png"));
+		this.imageMeteorite = this.iconMeteorite.getImage();
+	}
+
+	@Override
+	public void spawn() {
+	}
+
 	@Override
 	public void move() {
 		
@@ -52,7 +62,7 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	}
 
 	public int getPositionX() {
-		return this.positionX;
+		return positionX;
 	}
 
 	public void setPositionX(int positionX) {
@@ -60,7 +70,7 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	}
 
 	public int getPositionY() {
-		return this.positionY;
+		return positionY;
 	}
 
 	public void setPositionY(int positionY) {
@@ -68,7 +78,7 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	}
 
 	public int getSpeedX() {
-		return this.speedX;
+		return speedX;
 	}
 
 	public void setSpeedX(int speedX) {
@@ -76,30 +86,18 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	}
 
 	public int getSpeedY() {
-		return this.speedY;
+		return speedY;
 	}
 
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
 	
+	public int getDamage() {
+		return this.damage;
+	}
+	
 	public boolean isDead() {
 		return this.dead;
-	}
-
-	public int getWidth() {
-		return this.width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return this.height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
 	}
 }

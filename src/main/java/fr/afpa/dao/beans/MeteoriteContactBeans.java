@@ -8,6 +8,9 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+import fr.afpa.business.services.GameThread;
+import fr.afpa.business.services.KeyboardListener;
+
 public class MeteoriteContactBeans extends JPanel{
 	
 	private PlaneBeans plane;
@@ -27,7 +30,7 @@ public class MeteoriteContactBeans extends JPanel{
 		this.arrows = new ArrowBeans();
 
 		this.setFocusable(true);
-		this.addKeyListener(new Keyboard());
+		this.addKeyListener(new KeyboardListener());
 
 		Thread gameThread = new Thread(new GameThread());
 		Thread meteoritesSpawner = new Thread(new Runnable() {
@@ -90,7 +93,7 @@ public class MeteoriteContactBeans extends JPanel{
 
 		// switch (meteoriteType) {
 		// case 0:
-		this.meteorites.add(new SimpleMeteorite(randPositionX));
+		this.meteorites.add(new SimpleMeteoriteBeans(randPositionX));
 		// break;
 		// }
 	}
