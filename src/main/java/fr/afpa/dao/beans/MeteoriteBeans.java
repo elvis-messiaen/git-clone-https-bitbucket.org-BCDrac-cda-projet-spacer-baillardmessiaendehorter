@@ -28,23 +28,7 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	
 	@Override
 	public void move() {
-		
-		this.positionY += this.speedY;
 
-		if (this.positionX > GameConstants.GAME_SCREEN_MAX_WIDTH) {
-			this.positionX = GameConstants.GAME_SCREEN_MAX_WIDTH;
-			
-		} else if (this.positionX < GameConstants.GAME_SCREEN_MIN_WIDTH) {
-			this.positionX = GameConstants.GAME_SCREEN_MIN_WIDTH;
-		}
-
-		if (this.positionY > GameConstants.GAME_SCREEN_MAX_HEIGHT) {
-			this.positionY = GameConstants.GAME_SCREEN_MAX_HEIGHT;
-			this.dead = true;
-			
-		} else if (this.positionY < GameConstants.GAME_SCREEN_MIN_HEIGHT) {
-			this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
-		}
 	}
 	
 	public void draw(Graphics graph) {
