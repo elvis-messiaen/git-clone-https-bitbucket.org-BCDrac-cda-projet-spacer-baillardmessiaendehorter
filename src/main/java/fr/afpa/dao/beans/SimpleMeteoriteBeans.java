@@ -24,7 +24,7 @@ public class SimpleMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 	
 	public SimpleMeteoriteBeans(int positionX) {
 		
-		super();
+		super(2);
 		
 		this.positionX = positionX;
 		

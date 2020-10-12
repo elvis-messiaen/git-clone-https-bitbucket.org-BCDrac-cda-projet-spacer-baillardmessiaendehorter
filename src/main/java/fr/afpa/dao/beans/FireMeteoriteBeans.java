@@ -24,7 +24,7 @@ public class FireMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 	
 	public FireMeteoriteBeans(int positionX) {
 		
-		super();
+		super(1);
 		
 		this.positionX = positionX;
 		

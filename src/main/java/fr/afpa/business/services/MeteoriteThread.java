@@ -50,13 +50,14 @@ public class MeteoriteThread implements Runnable {
 	}
 
 	private void meteoriteDie() {
-
-		if (!this.meteorites.isEmpty()) {
-			for (int i = 0; i < this.meteorites.size(); i++) {
-
-				if (this.meteorites.get(i).isDead()) {
-					this.meteorites.remove(meteorites.get(i));
-					generateMeteorites();
+		synchronized (this.meteorites) {
+			if (!this.meteorites.isEmpty()) {
+				for (int i = 0; i < this.meteorites.size(); i++) {
+	
+					if (this.meteorites.get(i).isDead()) {
+						this.meteorites.remove(meteorites.get(i));
+						generateMeteorites();
+					}
 				}
 			}
 		}
