@@ -70,8 +70,8 @@ public class GameBusiness extends JPanel {
 	public void logic() {
 
 		this.plane.movePlane();
-		for (MeteoriteBeans meteorite : this.meteorites) {
-			meteorite.move();
+		for (int i = 0; i < this.meteorites.size(); i++) {
+			meteorites.get(i).move();
 		}
 	}
 

@@ -3,6 +3,9 @@ package fr.afpa.business.services;
 import java.util.List;
 import java.util.Random;
 
+import fr.afpa.dao.beans.FireMeteoriteBeans;
+import fr.afpa.dao.beans.GameConstants;
+import fr.afpa.dao.beans.IceMeteoriteBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.SimpleMeteoriteBeans;
 
@@ -34,13 +37,15 @@ public class MeteoriteThread implements Runnable {
 	private void generateMeteorites() {
 
 		if (this.meteorites.size() < 3) {
-			// int meteoriteType = this.rand.nextInt(5);
-			int randPositionX = this.rand.nextInt(540);
+			int meteoriteType = this.rand.nextInt(3);
+			int randPositionX = this.rand.nextInt(GameConstants.GAME_SCREEN_MAX_WIDTH);
 
-			// switch (meteoriteType) {
-			// case 0:
-			this.meteorites.add(new SimpleMeteoriteBeans(randPositionX));
+			switch (meteoriteType) {
+			case 0 : this.meteorites.add(new SimpleMeteoriteBeans(randPositionX)); break;
+			case 1 : this.meteorites.add(new FireMeteoriteBeans(randPositionX)); break;
+			case 2 : this.meteorites.add(new IceMeteoriteBeans(randPositionX)); break;
 			// break;
+			}
 		}
 	}
 
