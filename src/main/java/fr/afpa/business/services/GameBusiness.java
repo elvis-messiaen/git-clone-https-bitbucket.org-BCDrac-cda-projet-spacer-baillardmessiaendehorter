@@ -1,5 +1,6 @@
 package fr.afpa.business.services;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -10,14 +11,9 @@ import javax.swing.JPanel;
 import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
-import fr.afpa.dao.beans.FireMeteoriteBeans;
 import fr.afpa.dao.beans.GameOverBeans;
-import fr.afpa.dao.beans.IceMeteoriteBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
-import fr.afpa.dao.beans.SimpleMeteoriteBeans;
-import lombok.Getter;
-import lombok.Setter;
 
 public class GameBusiness extends JPanel {
 	/*
@@ -33,7 +29,7 @@ public class GameBusiness extends JPanel {
 	private Thread meteoriteThread;
 	private boolean gameO;
 	ScoreBusiness score;
-
+	private Font poli;
 	public GameBusiness() {
 
 		super();
@@ -47,7 +43,7 @@ public class GameBusiness extends JPanel {
 		this.addKeyListener(new KeyboardListener());
 		this.gameO = false;
 		this.score = new ScoreBusiness();
-
+		poli = new Font("Arial",Font.LAYOUT_LEFT_TO_RIGHT,24);
 		// le Thread est execute avant la fin du constructeur
 		// comme c'est aléatoire :
 		// plantage du jeu
@@ -58,12 +54,11 @@ public class GameBusiness extends JPanel {
 
 		this.gameThread = new Thread(new GameThread());
 		this.meteoriteThread = new Thread(new MeteoriteThread(this.meteorites));
-
 		this.gameThread.setPriority(Thread.MAX_PRIORITY);
 		this.meteoriteThread.setPriority(Thread.MIN_PRIORITY);
-
 		this.gameThread.start();
 		this.meteoriteThread.start();
+		
 	}
 
 	/*
@@ -82,9 +77,9 @@ public class GameBusiness extends JPanel {
 			for (MeteoriteBeans meteorite : this.meteorites) {
 				meteorite.move();
 	
-				if (meteorite.isDead()) {
+				if (meteorite.isDead() && gameO == false ) {
 					score.setScore(score.getScore() + meteorite.getValueMeteor());
-					System.out.println(score.getScore());
+					
 				}
 				if (MeteoriteImpactControl.meteorContact(plane, meteorite)) {
 					this.gameO = true;
@@ -105,9 +100,11 @@ public class GameBusiness extends JPanel {
 			this.arrows.draw(graph2);
 			this.plane.draw(graph2);
 			paintMeteorites(graph2);
-
+		
 		}
-
+		graph2.setFont(poli);
+		String t = String.valueOf("Score : " + this.score.getScore());
+		graph2.drawString(t,25,50);
 	}
 
 	protected void paintMeteorites(Graphics graph) {
