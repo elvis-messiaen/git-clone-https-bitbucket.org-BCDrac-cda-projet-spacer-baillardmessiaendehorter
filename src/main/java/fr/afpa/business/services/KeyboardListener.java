@@ -15,7 +15,7 @@ public class KeyboardListener implements KeyListener {
 
 	
 	/**
-	 * Méthode deffinissant ll'action lorsqu'on appuie sur une touche permet de
+	 * Méthode deffinissant l'action lorsqu'on appuie sur une touche permet de
 	 * déplacer l'avion
 	 * 
 	 */
@@ -23,6 +23,7 @@ public class KeyboardListener implements KeyListener {
 	public void keyPressed(KeyEvent event) {
 
 		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
+			
 			Test.game.getPlane().setSpeedX(3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_LEFT) {

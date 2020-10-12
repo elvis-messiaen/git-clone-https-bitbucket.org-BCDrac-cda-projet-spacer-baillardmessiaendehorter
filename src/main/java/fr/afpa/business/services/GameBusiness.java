@@ -15,8 +15,7 @@ import fr.afpa.dao.beans.PlaneBeans;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 public class GameBusiness extends JPanel {
 	/*
 	 * classe de jeu
@@ -82,7 +81,7 @@ public class GameBusiness extends JPanel {
 		
 		Graphics graph2 = (Graphics2D) graph;
 		
-		this.gameOver.draw(graph2);
+		//this.gameOver.draw(graph2);
 		this.gameBackground.draw(graph2);
 		this.arrows.draw(graph2);
 		this.plane.draw(graph2);
@@ -95,4 +94,69 @@ public class GameBusiness extends JPanel {
 			meteorite.draw(graph);
 		}
 	}
+
+	public PlaneBeans getPlane() {
+		return plane;
+	}
+
+	public void setPlane(PlaneBeans plane) {
+		this.plane = plane;
+	}
+
+	public List<MeteoriteBeans> getMeteorites() {
+		return meteorites;
+	}
+
+	public void setMeteorites(List<MeteoriteBeans> meteorites) {
+		this.meteorites = meteorites;
+	}
+
+	public BackgroundBeans getGameBackground() {
+		return gameBackground;
+	}
+
+	public void setGameBackground(BackgroundBeans gameBackground) {
+		this.gameBackground = gameBackground;
+	}
+
+	public ArrowBeans getArrows() {
+		return arrows;
+	}
+
+	public void setArrows(ArrowBeans arrows) {
+		this.arrows = arrows;
+	}
+
+	public GameOverBeans getGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(GameOverBeans gameOver) {
+		this.gameOver = gameOver;
+	}
+
+	public Thread getMeteoritesSpawner() {
+		return meteoritesSpawner;
+	}
+
+	public void setMeteoritesSpawner(Thread meteoritesSpawner) {
+		this.meteoritesSpawner = meteoritesSpawner;
+	}
+
+	public Thread getGameThread() {
+		return gameThread;
+	}
+
+	public void setGameThread(Thread gameThread) {
+		this.gameThread = gameThread;
+	}
+
+	public Thread getMeteoriteThread() {
+		return meteoriteThread;
+	}
+
+	public void setMeteoriteThread(Thread meteoriteThread) {
+		this.meteoriteThread = meteoriteThread;
+	}
+	
 }
