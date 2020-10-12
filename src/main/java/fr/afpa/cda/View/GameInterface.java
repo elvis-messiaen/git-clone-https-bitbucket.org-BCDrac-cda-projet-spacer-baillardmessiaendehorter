@@ -21,10 +21,20 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 
+/**
+ * Classe gérant l'interface graphique du jeu
+ * 
+ * @author Julien
+ *
+ */
 public class GameInterface extends JFrame {
-	public static PlaneBeans plane;
+	
+	private PlaneBeans plane;
+	private MeteoriteBeans meteorite;
+	
 	public void fenetre() {
 		
 		ImageIcon icon;
@@ -52,7 +62,7 @@ public class GameInterface extends JFrame {
 
 		// Elements JFrame
 		fenetre.setLayout(new BorderLayout());
-		fenetre.setSize(600, 600);
+		fenetre.setSize(600, 900);
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setResizable(false);
 		fenetre.setAlwaysOnTop(true);
@@ -90,7 +100,7 @@ public class GameInterface extends JFrame {
 
 		// Préparation de l'image à afficher dans le Panel panelDisplay
 
-		icon = new ImageIcon(getClass().getResource("/background.jpg"));
+		icon = new ImageIcon(getClass().getResource("/starfall2.gif"));
 		background.setIcon(icon);
 
 		// Assemblage du panel panelButtons
@@ -118,7 +128,7 @@ public class GameInterface extends JFrame {
 
 		// Ajout de l'icone de'avion dans la frame
 
-		ImageIcon plane = new ImageIcon(getClass().getResource("/plane.png"));
+		ImageIcon plane = new ImageIcon(getClass().getResource("/plane2.gif"));
 
 		fenetre.setVisible(true);
 	}
