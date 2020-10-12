@@ -67,10 +67,8 @@ public class GameBusiness extends JPanel {
 	 * 
 	 */
 	public void logic() {
-//MeteoriteSimple est 2
-//MeteoriteDeFeu est 1 
-//MeteoriteDeGlace est 3 
-//MeteoriteZigzag est 5
+
+
 		this.plane.movePlane();
 
 		synchronized (this.meteorites) {
@@ -102,9 +100,14 @@ public class GameBusiness extends JPanel {
 			paintMeteorites(graph2);
 		
 		}
+		if (score.getScore() <= score.getScoreMax()) {
 		graph2.setFont(poli);
 		String t = String.valueOf("Score : " + this.score.getScore());
 		graph2.drawString(t,25,50);
+		}else {
+			graph2.setFont(poli);
+			graph2.drawString("Score : 999 ",25,50);
+		}
 	}
 
 	protected void paintMeteorites(Graphics graph) {
