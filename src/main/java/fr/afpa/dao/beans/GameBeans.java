@@ -8,14 +8,11 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-import fr.afpa.business.services.GameThread;
-import fr.afpa.business.services.KeyboardListener;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Deprecated
 public class GameBeans extends JPanel {
 	/*
 	 * classe de jeu
@@ -38,7 +35,7 @@ public class GameBeans extends JPanel {
 		this.arrows = new ArrowBeans();
 		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
-		this.addKeyListener(new KeyboardListener());
+		this.addKeyListener(new Keyboard());
 
 		
 		// le Thread est executer avant la fin du constructeur
@@ -54,7 +51,7 @@ public class GameBeans extends JPanel {
 			public void run() {
 				
 				while (true) {
-					if (meteorites.size() < 3) {
+					if (meteorites.size() != 3) {
 						try {
 							generateMeteorites();
 							Thread.sleep(1000);
@@ -89,7 +86,7 @@ public class GameBeans extends JPanel {
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
 		
-		this.gameOver.draw(graph2);
+		//this.gameOver.draw(graph2);
 		this.gameBackground.draw(graph2);
 		this.arrows.draw(graph2);
 		this.plane.draw(graph2);
@@ -110,7 +107,7 @@ public class GameBeans extends JPanel {
 
 		// switch (meteoriteType) {
 		// case 0:
-		this.meteorites.add(new SimpleMeteoriteBeans(randPositionX));
+		this.meteorites.add(new SimpleMeteorite(randPositionX));
 		// break;
 		// }
 	}
@@ -125,6 +122,10 @@ public class GameBeans extends JPanel {
 				}
 			}
 		}
+	}
+
+	public PlaneBeans getPlane() {
+		return plane;
 	}
 
 }

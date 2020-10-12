@@ -4,14 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-abstract class MeteoriteBeans implements FlyingObject {
+public class SimpleMeteorite extends MeteoriteBeans implements FlyingObject {
 
 	private ImageIcon meteoriteIcon;
 	private Image meteoriteImage;
@@ -22,10 +21,23 @@ abstract class MeteoriteBeans implements FlyingObject {
 	private int speedX;
 	private int speedY = 2;
 	private boolean isDead = false;
-	private int largeur = 20;
-	private int hauteur = 20;
 	
-	
+	public SimpleMeteorite(int positionX) {
+		
+		super();
+		
+		this.positionX = positionX;
+		
+		this.meteoriteIcon = new ImageIcon(getClass().getResource("/meteorite.png"));
+		this.meteoriteImage = this.meteoriteIcon.getImage();
+
+	}
+
+	@Override
+	public void spawn() {
+
+	}
+
 	@Override
 	public void move() {
 		
@@ -80,26 +92,5 @@ abstract class MeteoriteBeans implements FlyingObject {
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
-	
-	public boolean isDead() {
-		return this.isDead;
-	}
-
-	public int getLargeur() {
-		return largeur;
-	}
-
-	public void setLargeur(int largeur) {
-		this.largeur = largeur;
-	}
-
-	public int getHauteur() {
-		return hauteur;
-	}
-
-	public void setHauteur(int hauteur) {
-		this.hauteur = hauteur;
-	}
-	
 
 }

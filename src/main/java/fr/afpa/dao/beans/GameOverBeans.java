@@ -6,45 +6,30 @@ import javax.swing.ImageIcon;
 import lombok.Getter;
 import lombok.Setter;
 
-
-/**
- * Classe de l'image de game over
- * 
- * @author Elvis
- */
 @Getter
 @Setter
 public class GameOverBeans {
 
-	private ImageIcon iconBoom;
-	private Image imageBoom;
+	private ImageIcon icoBoom;
+	private Image boom;
 	
-	private ImageIcon iconGameOver;
-	private Image imageGameOver;
+	private ImageIcon icoGameOver;
+	private Image gameOver;
 
-	
-	/**
-	 * Constructeur
-	 */
 	public GameOverBeans() {
 
 		super();
   
-		this.iconBoom = new ImageIcon(getClass().getResource("/explosion.gif"));
-		this.imageBoom = this.iconBoom.getImage();
+		this.icoBoom = new ImageIcon(getClass().getResource("/explosion.gif"));
+		this.boom = this.icoBoom.getImage();
 		
-		this.iconGameOver = new ImageIcon(getClass().getResource("/gameOver.gif"));
-		this.imageGameOver = this.iconGameOver.getImage();
+		this.icoGameOver = new ImageIcon(getClass().getResource("/gameOver.gif"));
+		this.gameOver = this.icoGameOver.getImage();
 	}
 
-	
-	/**
-	 * Affiche le visuel de la classe
-	 * 
-	 * @param graph : le graphisme de la classe
-	 */
-	public void draw(Graphics graph) {
-		graph.drawImage(this.imageBoom, 0, 75, null);
-		graph.drawImage(this.imageGameOver, 50, 150, null);
+	protected void draw(Graphics graph2) {
+		graph2.drawImage(this.boom, 0, 75, null);
+		graph2.drawImage(this.gameOver, 50, 150, null);
 	}
+
 }

@@ -1,41 +1,38 @@
 package fr.afpa.dao.beans;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
+import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Classe de l'image de fond du jeu
- * 
- * @author Elvis
- */
 @Getter
 @Setter
 public class BackgroundBeans {
-
-	private ImageIcon iconBackground;
-	private Image imageBackground;
-
-	/**
-	 * Constructeur
+	/*
+	 * attribut du fond
 	 */
+	private ImageIcon icoBackground;
+	private Image background;
+
 	public BackgroundBeans() {
 		
-		this.iconBackground = new ImageIcon(getClass().getResource("/starfall2.gif"));
-		this.imageBackground = this.iconBackground.getImage();
+		super();
+		
+		this.icoBackground = new ImageIcon(getClass().getResource("/starfall2.gif"));
+		this.background = this.icoBackground.getImage();
 	}
 
-	/**
-	 * Affiche le visuel de la classe
-	 * 
-	 * @param graph : le graphisme de la classe
-	 */
-	public void draw(Graphics graph) {
-		graph.drawImage(this.imageBackground, 0, 75, null);
+	protected void draw(Graphics graph2) {
+		graph2.drawImage(this.background, 0, 75, null);
 	}
+
 }

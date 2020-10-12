@@ -1,41 +1,36 @@
 package fr.afpa.dao.beans;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
+import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Classe contenant les éléments graphiques des fléches
- * 
- * @author Elvis
- */
 @Getter
 @Setter
 public class ArrowBeans {
-
-	private ImageIcon iconArrow;
-	private Image imageArrow;
-
-	/**
-	 * Constructeur
+	/*
+	 * attribut arrow
 	 */
+	private ImageIcon icoArrow;
+	private Image arrow;
+
 	public ArrowBeans() {
-
-		this.iconArrow = new ImageIcon(getClass().getResource("/keys.jpg"));
-		this.imageArrow = this.iconArrow.getImage();
+		super();
+		icoArrow = new ImageIcon(getClass().getResource("/keys.jpg"));
+		this.arrow = this.icoArrow.getImage();
 	}
 
-	/**
-	 * Affiche le visuel de la classe
-	 * 
-	 * @param graph : le graphisme de la classe
-	 */
-	public void draw(Graphics graph) {
-		graph.drawImage(this.imageArrow, 10, 660, null);
+	protected void draw(Graphics graph3) {
+		graph3.drawImage(arrow, 10, 660, null);
 	}
+
 }
