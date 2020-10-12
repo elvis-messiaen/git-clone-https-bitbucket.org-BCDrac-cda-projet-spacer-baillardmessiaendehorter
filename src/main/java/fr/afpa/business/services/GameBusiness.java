@@ -1,5 +1,6 @@
 package fr.afpa.business.services;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -13,14 +14,10 @@ import fr.afpa.dao.beans.BackgroundBeans;
 import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class GameBusiness extends JPanel {
 	/*
-	 * classe de jeu
-	 * on integre les composants avion,fond,fleche,météorites
+	 * classe de jeu on integre les composants avion,fond,fleche,météorites
 	 */
 	private PlaneBeans plane;
 	private List<MeteoriteBeans> meteorites;
@@ -31,7 +28,8 @@ public class GameBusiness extends JPanel {
 	private Thread gameThread;
 	private Thread meteoriteThread;
 	private boolean gameO;
-
+	ScoreBusiness score;
+	private Font poli;
 	public GameBusiness() {
 
 		super();
@@ -44,23 +42,23 @@ public class GameBusiness extends JPanel {
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener());
 		this.gameO = false;
-		
-		// le Thread est executé avant la fin du constructeur
+		this.score = new ScoreBusiness();
+		poli = new Font("Arial",Font.LAYOUT_LEFT_TO_RIGHT,24);
+		// le Thread est execute avant la fin du constructeur
 		// comme c'est aléatoire :
 		// plantage du jeu
-		//  idéal sortir le Threads du constructeur vers une fonction
-		// et mettre  
+		// idéal sortir le Threads du constructeur vers une fonction
+		// et mettre
 		// - gameThread.start();
 		// - meteoritesSpawner.start();
-		
+
 		this.gameThread = new Thread(new GameThread());
 		this.meteoriteThread = new Thread(new MeteoriteThread(this.meteorites));
-		
 		this.gameThread.setPriority(Thread.MAX_PRIORITY);
 		this.meteoriteThread.setPriority(Thread.MIN_PRIORITY);
-		
 		this.gameThread.start();
 		this.meteoriteThread.start();
+		
 	}
 
 	/*
@@ -70,12 +68,20 @@ public class GameBusiness extends JPanel {
 	 */
 	public void logic() {
 
-		this.plane.movePlane();
-		for (MeteoriteBeans meteorite : this.meteorites) {
-			meteorite.move();
-			if (MeteoriteImpactControl.meteorContact(plane,  meteorite)) {
-				this.gameO = true;
 
+		this.plane.movePlane();
+
+		synchronized (this.meteorites) {
+			for (MeteoriteBeans meteorite : this.meteorites) {
+				meteorite.move();
+	
+				if (meteorite.isDead() && gameO == false ) {
+					score.setScore(score.getScore() + meteorite.getValueMeteor());
+					
+				}
+				if (MeteoriteImpactControl.meteorContact(plane, meteorite)) {
+					this.gameO = true;
+				}
 			}
 		}
 	}
@@ -86,14 +92,31 @@ public class GameBusiness extends JPanel {
 		Graphics graph2 = (Graphics2D) graph;
 		if (gameO == true) {
 			this.gameOver.draw(graph2);
+
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
 			this.plane.draw(graph2);
 			paintMeteorites(graph2);
-
+		
 		}
-
+		if (score.getScore() <=9) {
+			graph2.setFont(poli);
+			String t = String.valueOf("Score : 00" + this.score.getScore());
+			graph2.drawString(t,25,50);
+		}else if (score.getScore() > 9 && score.getScore() <= 99) {
+			graph2.setFont(poli);
+			String t = String.valueOf("Score : 0" + this.score.getScore());
+			graph2.drawString(t,25,50);
+		}
+		else if (score.getScore() > 99 || score.getScore()<= score.getScoreMax()) {
+		graph2.setFont(poli);
+		String t = String.valueOf("Score : " + this.score.getScore());
+		graph2.drawString(t,25,50);
+		}else {
+			graph2.setFont(poli);
+			graph2.drawString("Score : 999 ",25,50);
+		}
 	}
 
 	protected void paintMeteorites(Graphics graph) {
@@ -166,5 +189,21 @@ public class GameBusiness extends JPanel {
 	public void setMeteoriteThread(Thread meteoriteThread) {
 		this.meteoriteThread = meteoriteThread;
 	}
-	
+
+	public boolean isGameO() {
+		return gameO;
+	}
+
+	public void setGameO(boolean gameO) {
+		this.gameO = gameO;
+	}
+
+	public ScoreBusiness getScore() {
+		return score;
+	}
+
+	public void setScore(ScoreBusiness score) {
+		this.score = score;
+	}
+
 }

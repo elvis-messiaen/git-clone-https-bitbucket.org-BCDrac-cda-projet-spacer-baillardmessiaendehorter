@@ -19,7 +19,7 @@ public class IceMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 	
 	public IceMeteoriteBeans(int positionX) {
 		
-		super();
+		super(3);
 		
 		this.positionX = positionX;
 		

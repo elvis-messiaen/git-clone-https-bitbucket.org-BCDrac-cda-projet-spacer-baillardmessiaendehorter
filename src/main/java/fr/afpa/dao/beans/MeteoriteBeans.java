@@ -24,8 +24,11 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	private boolean dead = false;
 	private int width = 20;
 	private int height = 20;
+	private int valueMeteor;
 	
-	
+	public  MeteoriteBeans(int value) {
+		this.valueMeteor = value;
+	}
 	@Override
 	public void move() {
 
@@ -86,4 +89,13 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+
+	public int getValueMeteor() {
+		return valueMeteor;
+	}
+
+	public void setValueMeteor(int valueMeteor) {
+		this.valueMeteor = valueMeteor;
+	}
+	
 }
