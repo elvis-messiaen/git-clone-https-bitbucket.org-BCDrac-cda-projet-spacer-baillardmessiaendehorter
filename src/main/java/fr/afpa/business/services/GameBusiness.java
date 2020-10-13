@@ -13,6 +13,7 @@ import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
 import fr.afpa.dao.beans.GameConstants;
+import fr.afpa.dao.beans.EndPanel;
 import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
@@ -28,6 +29,8 @@ public class GameBusiness extends JPanel {
 	private BackgroundBeans gameBackground;
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
+	private EndPanel endPanel;
+	private Thread meteoritesSpawner;
 	private Thread gameThread;
 	private Thread meteoriteThread;
 	public boolean gameFinished;
@@ -102,6 +105,9 @@ public class GameBusiness extends JPanel {
 		
 		if (gameFinished) {
 			this.gameOver.draw(graph2);
+			this.endPanel=new EndPanel();
+			this.endPanel.draw(graph2);
+			
 
 		} else {
 			this.gameBackground.draw(graph2);
