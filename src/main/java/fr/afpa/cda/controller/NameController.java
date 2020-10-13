@@ -14,7 +14,7 @@ import fr.afpa.business.services.NameBusiness;
 //donc Fenêtre ou Dialogue ou Panel à vous de voir.
 public class NameController {
 //	public boolean nameControle(NameBusiness name) {
-//		if (name.getNom() < 3 && name.getNom() > 6) {
+//		if (name.getNom().matches(regex)) {
 //
 //		}
 //	}
