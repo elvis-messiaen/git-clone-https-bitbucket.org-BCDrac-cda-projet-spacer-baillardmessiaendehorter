@@ -15,11 +15,12 @@ public class IceMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 	private int positionY = 80;
 	private int speedX;
 	private int speedY = 2;
+	private int points = 3;
 	private boolean dead = false;
 	
 	public IceMeteoriteBeans(int positionX) {
 		
-		super(3);
+		super();
 		
 		this.positionX = positionX;
 		

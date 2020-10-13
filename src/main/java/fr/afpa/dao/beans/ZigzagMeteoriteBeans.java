@@ -18,6 +18,7 @@ public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 	private int speedY = 1;
 	private double angle = 30.0;
 	private float amplitude = 8.0f;
+	private int points = 5;
 	private boolean dead = false;
 	
 	public ZigzagMeteoriteBeans(int positionX) {

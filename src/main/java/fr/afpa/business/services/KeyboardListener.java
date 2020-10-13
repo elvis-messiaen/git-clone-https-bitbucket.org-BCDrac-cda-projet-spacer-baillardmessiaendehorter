@@ -24,16 +24,16 @@ public class KeyboardListener implements KeyListener {
 
 		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
 			
-			Test.game.getPlane().setSpeedX(3);
+			Test.game.plane.setSpeedX(3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-			Test.game.getPlane().setSpeedX(-3);
+			Test.game.plane.setSpeedX(-3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-			Test.game.getPlane().setSpeedY(3);
+			Test.game.plane.setSpeedY(3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_UP) {
-			Test.game.getPlane().setSpeedY(-3);
+			Test.game.plane.setSpeedY(-3);
 		}
 	}
 
@@ -45,16 +45,16 @@ public class KeyboardListener implements KeyListener {
 	public void keyReleased(KeyEvent event) {
 		
 		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Test.game.getPlane().setSpeedX(0);
+			Test.game.plane.setSpeedX(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-			Test.game.getPlane().setSpeedX(0);
+			Test.game.plane.setSpeedX(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-			Test.game.getPlane().setSpeedY(0);
+			Test.game.plane.setSpeedY(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_UP) {
-			Test.game.getPlane().setSpeedY(0);
+			Test.game.plane.setSpeedY(0);
 		}
 	}
 

@@ -12,5 +12,6 @@ public class GameConstants {
 	public static final int GAME_SCREEN_MIN_HEIGHT = 100;
 	public static final int GAME_SCREEN_MAX_WIDTH = 540;
 	public static final int GAME_SCREEN_MIN_WIDTH = 10;
+	public static final int MAX_SCORE = 999;
 
 }

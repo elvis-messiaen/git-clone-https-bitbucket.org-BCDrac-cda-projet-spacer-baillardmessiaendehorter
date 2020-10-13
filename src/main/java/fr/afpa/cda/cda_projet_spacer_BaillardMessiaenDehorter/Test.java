@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 
 import fr.afpa.business.services.GameBusiness;
 import fr.afpa.cda.View.GameInterface;
-import fr.afpa.dao.beans.GameBeans;
 import fr.afpa.dao.beans.GameConstants;
 
 public class Test {

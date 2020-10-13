@@ -3,24 +3,15 @@ package fr.afpa.cda.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
+import fr.afpa.cda.controller.GameController;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 
@@ -34,6 +25,7 @@ public class GameInterface extends JFrame {
 	
 	private PlaneBeans plane;
 	private MeteoriteBeans meteorite;
+	private GameController gameControl = new GameController();
 	
 	public void fenetre() {
 		
@@ -44,12 +36,10 @@ public class GameInterface extends JFrame {
 
 		JPanel panelDisplay = new JPanel();
 		JPanel panelButtons = new JPanel();
-		JLabel infos = new JLabel(" ");
+		
 		JLabel background = new JLabel();
 
-		JLabel score = new JLabel("  score");
-		JLabel name = new JLabel("name");
-		JLabel hp = new JLabel("hp  ");
+		
 //		JLabel leftArrow = new JLabel("<-");
 //		JLabel upArrow = new JLabel("up");
 //		JLabel downArrow = new JLabel("down");
@@ -78,9 +68,7 @@ public class GameInterface extends JFrame {
 
 		// Elements JLabel
 
-		infos.setLayout(new BorderLayout());
-
-		name.setHorizontalAlignment(JLabel.CENTER);
+		
 
 //		upArrow.setHorizontalAlignment(JLabel.CENTER);
 //		downArrow.setHorizontalAlignment(JLabel.CENTER);
@@ -113,12 +101,9 @@ public class GameInterface extends JFrame {
 
 		// Assemblage du panel panelDisplay avec le label "infos" comme contenant pour
 		// "score", "name" et "hp"
-		infos.add(score, BorderLayout.WEST);
-		infos.add(name, BorderLayout.CENTER);
-		infos.add(hp, BorderLayout.EAST);
-		infos.setVisible(true);
+		
 
-		panelDisplay.add(infos, BorderLayout.NORTH);
+		panelDisplay.add(infos(), BorderLayout.NORTH);
 
 		panelDisplay.add(background, BorderLayout.CENTER);
 
@@ -131,5 +116,27 @@ public class GameInterface extends JFrame {
 		ImageIcon plane = new ImageIcon(getClass().getResource("/plane2.gif"));
 
 		fenetre.setVisible(true);
+	}
+	
+	
+	
+	private JLabel infos() {
+		
+		JLabel infos = new JLabel(" ");
+		JLabel score = new JLabel("  score : " + this.gameControl.getPlayerScore());
+		JLabel name = new JLabel("name : " + this.gameControl.getPlayerName());
+		JLabel hp = new JLabel("hp : " + this.gameControl.getPlaneHealthPoints() + " ");
+		
+		infos.setLayout(new BorderLayout());
+
+		name.setHorizontalAlignment(JLabel.CENTER);
+		
+		infos.add(score, BorderLayout.WEST);
+		infos.add(name, BorderLayout.CENTER);
+		infos.add(hp, BorderLayout.EAST);
+		infos.setVisible(true);
+		
+		return infos;
+		
 	}
 }

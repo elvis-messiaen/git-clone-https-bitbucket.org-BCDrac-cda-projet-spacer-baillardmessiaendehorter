@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import fr.afpa.business.services.GameThread;
 import fr.afpa.business.services.KeyboardListener;
 
+@Deprecated
 public class MeteoriteContactBeans extends JPanel{
 	
 	private PlaneBeans plane;

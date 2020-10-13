@@ -20,7 +20,7 @@ public class PlaneBeans {
 	private Image planeRight;
 	private ImageIcon iconPlaneLeft;
 	private Image planeLeft;
-	private int healtPoint;
+	private int healthPoints = 5;
 	private int positionX;
 	private int positionY;
 	private int speedX;
@@ -29,7 +29,6 @@ public class PlaneBeans {
 	private int hauteur = 85;
 
 	public PlaneBeans() {
-		super();
 
 		this.positionX = 300;
 		this.positionY = 540;
