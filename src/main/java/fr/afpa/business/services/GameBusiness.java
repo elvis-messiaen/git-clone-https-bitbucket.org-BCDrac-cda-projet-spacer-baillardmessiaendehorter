@@ -1,5 +1,6 @@
 package fr.afpa.business.services;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -100,6 +101,10 @@ public class GameBusiness extends JPanel {
 			paintMeteorites(graph2);
 		
 		}
+		
+		graph2.setColor(Color.WHITE);
+		graph2.fillRect(0, 0, 600, 75);
+		graph2.setColor(Color.BLACK);
 		if (score.getScore() <=9) {
 			graph2.setFont(poli);
 			String t = String.valueOf("Score : 00" + this.score.getScore());
