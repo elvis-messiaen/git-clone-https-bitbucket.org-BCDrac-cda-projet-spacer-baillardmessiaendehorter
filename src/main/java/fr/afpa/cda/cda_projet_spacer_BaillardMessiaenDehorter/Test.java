@@ -21,7 +21,7 @@ public class Test {
 		
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setResizable(false);
-		fenetre.setAlwaysOnTop(true);
+		fenetre.setAlwaysOnTop(false);
 
 		game = new GameBusiness();
 
