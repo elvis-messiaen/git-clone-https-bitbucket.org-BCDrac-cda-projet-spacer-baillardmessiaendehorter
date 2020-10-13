@@ -12,29 +12,33 @@ import javax.swing.JPanel;
 import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
+import fr.afpa.dao.beans.GameConstants;
 import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
+import fr.afpa.dao.beans.PlayerBeans;
 
 public class GameBusiness extends JPanel {
 	/*
 	 * classe de jeu on integre les composants avion,fond,fleche,météorites
 	 */
-	private PlaneBeans plane;
+	public PlaneBeans plane;
+	private PlayerBeans player;
 	private List<MeteoriteBeans> meteorites;
 	private BackgroundBeans gameBackground;
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
-	private Thread meteoritesSpawner;
 	private Thread gameThread;
 	private Thread meteoriteThread;
-	private boolean gameO;
-	ScoreBusiness score;
-	private Font poli;
+	public boolean gameFinished;
+	private Font police;
+	
+	
 	public GameBusiness() {
 
 		super();
 
+		this.player = new PlayerBeans();
 		this.plane = new PlaneBeans();
 		this.meteorites = new ArrayList<MeteoriteBeans>();
 		this.gameBackground = new BackgroundBeans();
@@ -42,9 +46,8 @@ public class GameBusiness extends JPanel {
 		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener());
-		this.gameO = false;
-		this.score = new ScoreBusiness();
-		poli = new Font("Arial",Font.LAYOUT_LEFT_TO_RIGHT,24);
+		this.gameFinished = false;
+		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
 		// le Thread est execute avant la fin du constructeur
 		// comme c'est aléatoire :
 		// plantage du jeu
@@ -59,7 +62,6 @@ public class GameBusiness extends JPanel {
 		this.meteoriteThread.setPriority(Thread.MIN_PRIORITY);
 		this.gameThread.start();
 		this.meteoriteThread.start();
-		
 	}
 
 	/*
@@ -69,19 +71,24 @@ public class GameBusiness extends JPanel {
 	 */
 	public void logic() {
 
-
 		this.plane.movePlane();
 
 		synchronized (this.meteorites) {
+			
 			for (MeteoriteBeans meteorite : this.meteorites) {
 				meteorite.move();
 	
-				if (meteorite.isDead() && gameO == false ) {
-					score.setScore(score.getScore() + meteorite.getValueMeteor());
-					
+				if (meteorite.isDead() && !gameFinished) {
+					player.setScore(player.getScore() + meteorite.getPoints());
 				}
-				if (MeteoriteImpactControl.meteorContact(plane, meteorite)) {
-					this.gameO = true;
+				
+				if (MeteoriteImpactControl.meteorContact(this.plane, meteorite)) {
+					
+					planeGetHurt(meteorite);
+					
+					if (this.plane.getHealthPoints() <= 0) {
+						this.gameFinished = true;
+					}
 				}
 			}
 		}
@@ -89,9 +96,11 @@ public class GameBusiness extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics graph) {
+		
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
-		if (gameO == true) {
+		
+		if (gameFinished) {
 			this.gameOver.draw(graph2);
 
 		} else {
@@ -99,28 +108,30 @@ public class GameBusiness extends JPanel {
 			this.arrows.draw(graph2);
 			this.plane.draw(graph2);
 			paintMeteorites(graph2);
-		
 		}
 		
 		graph2.setColor(Color.WHITE);
 		graph2.fillRect(0, 0, 600, 75);
 		graph2.setColor(Color.BLACK);
-		if (score.getScore() <=9) {
-			graph2.setFont(poli);
-			String t = String.valueOf("Score : 00" + this.score.getScore());
-			graph2.drawString(t,25,50);
-		}else if (score.getScore() > 9 && score.getScore() <= 99) {
-			graph2.setFont(poli);
-			String t = String.valueOf("Score : 0" + this.score.getScore());
-			graph2.drawString(t,25,50);
-		}
-		else if (score.getScore() > 99 || score.getScore()<= score.getScoreMax()) {
-		graph2.setFont(poli);
-		String t = String.valueOf("Score : " + this.score.getScore());
-		graph2.drawString(t,25,50);
-		}else {
-			graph2.setFont(poli);
-			graph2.drawString("Score : 999 ",25,50);
+		
+		if (this.player.getScore() <=9) {
+			graph2.setFont(this.police);
+			String string = String.valueOf("Score : 00" + this.player.getScore());
+			graph2.drawString(string, 25, 50);
+
+		} else if (this.player.getScore() > 9 && this.player.getScore() <= 99) {
+			graph2.setFont(this.police);
+			String string = String.valueOf("Score : 0" + this.player.getScore());
+			graph2.drawString(string, 25, 50);
+
+		} else if (this.player.getScore() > 99 || this.player.getScore() < GameConstants.MAX_SCORE) {
+			graph2.setFont(this.police);
+			String string = String.valueOf("Score : " + this.player.getScore());
+			graph2.drawString(string, 25, 50);
+
+		} else {
+			graph2.setFont(this.police);
+			graph2.drawString("Score : 999 ", 25, 50);
 		}
 	}
 
@@ -130,85 +141,22 @@ public class GameBusiness extends JPanel {
 			meteorite.draw(graph);
 		}
 	}
-
-	public PlaneBeans getPlane() {
-		return plane;
+	
+	public int planeGetHurt(MeteoriteBeans meteorite) {
+		this.plane.setHealthPoints(this.plane.getHealthPoints() - meteorite.getDamage());
+		return this.plane.getHealthPoints();
 	}
-
-	public void setPlane(PlaneBeans plane) {
-		this.plane = plane;
+	
+	public String getPlayerName() {
+		return this.player.getName();
 	}
-
-	public List<MeteoriteBeans> getMeteorites() {
-		return meteorites;
+	
+	public int getPlaneHealthPoints() {
+		return this.plane.getHealthPoints();
 	}
-
-	public void setMeteorites(List<MeteoriteBeans> meteorites) {
-		this.meteorites = meteorites;
-	}
-
-	public BackgroundBeans getGameBackground() {
-		return gameBackground;
-	}
-
-	public void setGameBackground(BackgroundBeans gameBackground) {
-		this.gameBackground = gameBackground;
-	}
-
-	public ArrowBeans getArrows() {
-		return arrows;
-	}
-
-	public void setArrows(ArrowBeans arrows) {
-		this.arrows = arrows;
-	}
-
-	public GameOverBeans getGameOver() {
-		return gameOver;
-	}
-
-	public void setGameOver(GameOverBeans gameOver) {
-		this.gameOver = gameOver;
-	}
-
-	public Thread getMeteoritesSpawner() {
-		return meteoritesSpawner;
-	}
-
-	public void setMeteoritesSpawner(Thread meteoritesSpawner) {
-		this.meteoritesSpawner = meteoritesSpawner;
-	}
-
-	public Thread getGameThread() {
-		return gameThread;
-	}
-
-	public void setGameThread(Thread gameThread) {
-		this.gameThread = gameThread;
-	}
-
-	public Thread getMeteoriteThread() {
-		return meteoriteThread;
-	}
-
-	public void setMeteoriteThread(Thread meteoriteThread) {
-		this.meteoriteThread = meteoriteThread;
-	}
-
-	public boolean isGameO() {
-		return gameO;
-	}
-
-	public void setGameO(boolean gameO) {
-		this.gameO = gameO;
-	}
-
-	public ScoreBusiness getScore() {
-		return score;
-	}
-
-	public void setScore(ScoreBusiness score) {
-		this.score = score;
+	
+	public int getPlayerScore() {
+		return this.player.getScore();
 	}
 
 }
