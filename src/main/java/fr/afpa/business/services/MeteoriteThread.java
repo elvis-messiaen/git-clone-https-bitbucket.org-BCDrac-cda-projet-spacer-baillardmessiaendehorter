@@ -46,7 +46,6 @@ public class MeteoriteThread implements Runnable {
 			case 1 : this.meteorites.add(new FireMeteoriteBeans(randPositionX)); break;
 			case 2 : this.meteorites.add(new IceMeteoriteBeans(randPositionX)); break;
 			case 3 : this.meteorites.add(new ZigzagMeteoriteBeans(randPositionX)); break;
-			// break;
 			}
 		}
 	}

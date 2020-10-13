@@ -30,7 +30,6 @@ public class GameBusiness extends JPanel {
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
 	private EndPanel endPanel;
-	private Thread meteoritesSpawner;
 	private Thread gameThread;
 	private Thread meteoriteThread;
 	public boolean gameFinished;
@@ -49,7 +48,6 @@ public class GameBusiness extends JPanel {
 		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener());
-		this.gameO = false;
 		this.gameFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
 		// le Thread est execute avant la fin du constructeur
@@ -79,16 +77,16 @@ public class GameBusiness extends JPanel {
 
 		synchronized (this.meteorites) {
 			
-			for (MeteoriteBeans meteorite : this.meteorites) {
-				meteorite.move();
+			for (int i = 0; i < this.meteorites.size(); i++) {
+				meteorites.get(i).move();
 	
-				if (meteorite.isDead() && !gameFinished) {
-					player.setScore(player.getScore() + meteorite.getPoints());
+				if (meteorites.get(i).isDead() && !this.gameFinished) {
+					this.player.setScore(this.player.getScore() + meteorites.get(i).getPoints());
 				}
 				
-				if (MeteoriteImpactControl.meteorContact(this.plane, meteorite)) {
+				if (MeteoriteImpactControl.meteorContact(this.plane, meteorites.get(i))) {
 					
-					planeGetHurt(meteorite);
+					planeGetHurt(meteorites.get(i));
 					
 					if (this.plane.getHealthPoints() <= 0) {
 						this.gameFinished = true;
@@ -104,11 +102,10 @@ public class GameBusiness extends JPanel {
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
 		
-		if (gameFinished) {
+		if (this.gameFinished) {
 			this.gameOver.draw(graph2);
 			this.endPanel=new EndPanel();
 			this.endPanel.draw(graph2);
-			attenteChoice = true;
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
