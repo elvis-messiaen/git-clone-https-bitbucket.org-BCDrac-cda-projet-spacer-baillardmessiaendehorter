@@ -49,6 +49,7 @@ public class GameBusiness extends JPanel {
 		this.gameOver = new GameOverBeans();
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener());
+		this.gameO = false;
 		this.gameFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
 		// le Thread est execute avant la fin du constructeur
@@ -107,15 +108,19 @@ public class GameBusiness extends JPanel {
 			this.gameOver.draw(graph2);
 			this.endPanel=new EndPanel();
 			this.endPanel.draw(graph2);
-			
-
+			attenteChoice = true;
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
 			this.plane.draw(graph2);
 			paintMeteorites(graph2);
 		}
-		
+		/*
+		 * reglage compatibilité mac windows
+		 * affichage du score pendant et à la fin de partie
+		 * score ne dépasse pas 999
+		 * score sur 3 chiffres
+		 */
 		graph2.setColor(Color.WHITE);
 		graph2.fillRect(0, 0, 600, 75);
 		graph2.setColor(Color.BLACK);
