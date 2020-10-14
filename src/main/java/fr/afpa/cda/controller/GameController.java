@@ -13,18 +13,18 @@ public class GameController {
 	
 	
 	public String checkScore(int score) {
-
+		
 		String string = "";
-
+		
 		if (score <= 9) {
-			string = String.valueOf("Score : 00" + score);
+			string = String.valueOf("Score : 00" + score);		
 
 		} else if (score > 9 && score <= 99) {
 			string = String.valueOf("Score : 0" + score);
 
 		} else if (score > 99 || score < GameConstants.MAX_SCORE) {
 			string = String.valueOf("Score : " + score);
-
+			
 		} else {
 			string = " 999";
 		}

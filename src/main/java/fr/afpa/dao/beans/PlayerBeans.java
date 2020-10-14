@@ -14,9 +14,6 @@ public class PlayerBeans {
 	private LocalDateTime gameStartedDate;
 	private int score;
 	
-	public int getScore() {
-		return 0;
-	}
 
 	public String getName() {
 		return name;
@@ -26,6 +23,7 @@ public class PlayerBeans {
 		this.name = name;
 	}
 
+	
 	public LocalDateTime getGameStartedDate() {
 		return gameStartedDate;
 	}
@@ -34,9 +32,13 @@ public class PlayerBeans {
 		this.gameStartedDate = gameStartedDate;
 	}
 
+	
+	public int getScore() {
+		return this.score;
+	}
+	
 	public void setScore(int score) {
 		this.score = score;
 	}
-
 
 }

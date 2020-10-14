@@ -101,12 +101,8 @@ public class GamePanel extends JPanel {
 			for (int i = 0; i < this.meteorites.size(); i++) {
 				this.meteorites.get(i).move();
 
-				if (this.player.getScore() < GameConstants.MAX_SCORE) {
-					if (this.meteorites.get(i).isDead() && !this.gameIsFinished) {
-						this.player.setScore(this.player.getScore() + this.meteorites.get(i).getPoints());
-					}
-				} else {
-					this.player.setScore(999);
+				if (this.meteorites.get(i).isDead() && !this.gameIsFinished) {
+					this.player.setScore(this.player.getScore() + this.meteorites.get(i).getPoints());
 				}
 
 				if (this.meteoriteImpact.meteorContact(this.plane, this.meteorites.get(i))) {
@@ -176,6 +172,7 @@ public class GamePanel extends JPanel {
 			meteorite.draw(graph);
 		}
 	}
+	
 	
 	public void showScore(Graphics graph2) {
 		graph2.setFont(this.police);
