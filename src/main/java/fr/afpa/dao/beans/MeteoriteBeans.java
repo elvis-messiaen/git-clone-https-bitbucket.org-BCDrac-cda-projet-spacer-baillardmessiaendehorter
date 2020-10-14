@@ -88,5 +88,38 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	public ImageIcon getMeteoriteIcon() {
+		return meteoriteIcon;
+	}
+	public void setMeteoriteIcon(ImageIcon meteoriteIcon) {
+		this.meteoriteIcon = meteoriteIcon;
+	}
+	public Image getImageMeteorite() {
+		return imageMeteorite;
+	}
+	public void setImageMeteorite(Image imageMeteorite) {
+		this.imageMeteorite = imageMeteorite;
+	}
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	public int getMeteoriteSize() {
+		return meteoriteSize;
+	}
+	public void setMeteoriteSize(int meteoriteSize) {
+		this.meteoriteSize = meteoriteSize;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
 	
 }

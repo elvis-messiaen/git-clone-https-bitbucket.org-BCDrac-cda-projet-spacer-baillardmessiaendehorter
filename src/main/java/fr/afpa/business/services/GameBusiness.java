@@ -1,3 +1,5 @@
+
+
 package fr.afpa.business.services;
 
 import java.awt.Color;
@@ -10,6 +12,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import fr.afpa.cda.controller.MeteoriteImpactControl;
+import fr.afpa.cda.controller.PlayerController;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
 import fr.afpa.dao.beans.GameConstants;
@@ -18,6 +21,7 @@ import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 import fr.afpa.dao.beans.PlayerBeans;
+import fr.afpa.dao.beans.StartPanel;
 
 public class GameBusiness extends JPanel {
 	/*
@@ -34,7 +38,8 @@ public class GameBusiness extends JPanel {
 	private Thread meteoriteThread;
 	public boolean gameFinished;
 	private Font police;
-	
+	private StartPanel startPanel;
+	private PlayerController namePlayer;
 	
 	public GameBusiness() {
 
@@ -50,6 +55,8 @@ public class GameBusiness extends JPanel {
 		this.addKeyListener(new KeyboardListener());
 		this.gameFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
+		this.namePlayer = new PlayerController();
+		this.startPanel= new StartPanel();
 		// le Thread est execute avant la fin du constructeur
 		// comme c'est aléatoire :
 		// plantage du jeu
@@ -90,23 +97,31 @@ public class GameBusiness extends JPanel {
 					
 					if (this.plane.getHealthPoints() <= 0) {
 						this.gameFinished = true;
+						if (namePlayer.nameControle()== true) {
+							
+								
+							}
+						}
 					}
 				}
 			}
 		}
-	}
+	
 
 	@Override
 	protected void paintComponent(Graphics graph) {
 		
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
-		
+
 		if (this.gameFinished) {
 			this.gameOver.draw(graph2);
 			this.endPanel=new EndPanel();
 			this.endPanel.draw(graph2);
 		} else {
+			this.startPanel = new StartPanel();
+			this.startPanel.draw(graph2);
+			
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
 			this.plane.draw(graph2);
@@ -141,6 +156,7 @@ public class GameBusiness extends JPanel {
 			graph2.setFont(this.police);
 			graph2.drawString("Score : 999 ", 25, 50);
 		}
+		
 	}
 
 	protected void paintMeteorites(Graphics graph) {
