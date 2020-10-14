@@ -1,5 +1,6 @@
 package fr.afpa.dao.beans;
 
+@Deprecated
 public class NameBeans {
 	private String nom;{
 

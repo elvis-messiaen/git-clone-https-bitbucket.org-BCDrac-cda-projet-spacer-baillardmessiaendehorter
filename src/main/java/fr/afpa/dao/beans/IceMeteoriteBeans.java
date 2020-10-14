@@ -5,6 +5,11 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class IceMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 	
 	private ImageIcon iconMeteorite;
@@ -28,9 +33,6 @@ public class IceMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 		this.imageMeteorite = this.iconMeteorite.getImage();
 	}
 
-	@Override
-	public void spawn() {
-	}
 
 	@Override
 	public void move() {
@@ -96,4 +98,5 @@ public class IceMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 	public boolean isDead() {
 		return this.dead;
 	}
+
 }

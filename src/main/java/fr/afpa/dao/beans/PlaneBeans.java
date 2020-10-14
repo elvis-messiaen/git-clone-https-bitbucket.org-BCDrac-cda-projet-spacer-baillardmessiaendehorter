@@ -159,6 +159,7 @@ public class PlaneBeans {
 		return this.iconPlaneLeft;
 	}
 	
+	
 	public void setIconPlaneLeft(ImageIcon icoPlaneLeft) {
 		this.iconPlaneLeft = icoPlaneLeft;
 	}

@@ -1,4 +1,4 @@
-package fr.afpa.business.services;
+package fr.afpa.cda.View;
 
 import java.util.List;
 import java.util.Random;
@@ -35,6 +35,7 @@ public class MeteoriteThread implements Runnable {
 		}
 	}
 
+	
 	private void generateMeteorites() {
 
 		if (this.meteorites.size() < 3) {
@@ -50,6 +51,7 @@ public class MeteoriteThread implements Runnable {
 		}
 	}
 
+	
 	private void meteoriteDie() {
 		synchronized (this.meteorites) {
 			if (!this.meteorites.isEmpty()) {

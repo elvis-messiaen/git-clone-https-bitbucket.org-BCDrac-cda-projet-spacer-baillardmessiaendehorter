@@ -33,9 +33,6 @@ public class FireMeteoriteBeans extends MeteoriteBeans implements FlyingObject{
 		this.imageMeteorite = this.iconMeteorite.getImage();
 	}
 
-	@Override
-	public void spawn() {
-	}
 
 	@Override
 	public void move() {

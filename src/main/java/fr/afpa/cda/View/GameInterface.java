@@ -5,13 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import fr.afpa.cda.controller.GameController;
+import fr.afpa.dao.beans.GameConstants;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 
@@ -23,21 +23,22 @@ import fr.afpa.dao.beans.PlaneBeans;
  */
 public class GameInterface extends JFrame {
 	
-	private PlaneBeans plane;
+	private GamePanel game = new GamePanel();
+	private PlaneBeans plane = new PlaneBeans();
 	private MeteoriteBeans meteorite;
 	private GameController gameControl = new GameController();
 	
+	public GameInterface() {
+	}
+	
 	public void fenetre() {
-		
-		ImageIcon icon;
+
 
 		// Instanciations des différents élements
 		JFrame fenetre = new JFrame("Mon jeu d'avion");
 
 		JPanel panelDisplay = new JPanel();
 		JPanel panelButtons = new JPanel();
-		
-		JLabel background = new JLabel();
 
 		
 //		JLabel leftArrow = new JLabel("<-");
@@ -52,7 +53,7 @@ public class GameInterface extends JFrame {
 
 		// Elements JFrame
 		fenetre.setLayout(new BorderLayout());
-		fenetre.setSize(600, 900);
+		fenetre.setSize(GameConstants.WINDOW_MAX_WIDTH, GameConstants.WINDOW_MAX_HEIGHT);
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setResizable(false);
 		fenetre.setAlwaysOnTop(true);
@@ -83,13 +84,16 @@ public class GameInterface extends JFrame {
 		// Préparation de l'image à afficher dans le label "keys", qui ira se placer
 		// dans le JPanel "panelButtons"
 
-		icon = new ImageIcon(getClass().getResource("/keys.jpg"));
-		keys.setIcon(icon);
+		//icon = new ImageIcon(getClass().getResource("/keys.jpg"));
+		//keys.setIcon(icon);
 
 		// Préparation de l'image à afficher dans le Panel panelDisplay
 
-		icon = new ImageIcon(getClass().getResource("/starfall2.gif"));
-		background.setIcon(icon);
+		//icon = new ImageIcon(getClass().getResource("/starfall2.gif"));
+		//background.setIcon(icon);
+		
+		this.game.setSize(GameConstants.GAME_SCREEN_MAX_WIDTH, GameConstants.GAME_SCREEN_MAX_HEIGHT);
+		fenetre.add(this.game, BorderLayout.CENTER);
 
 		// Assemblage du panel panelButtons
 		panelButtons.add(keys, BorderLayout.CENTER);
@@ -105,27 +109,33 @@ public class GameInterface extends JFrame {
 
 		panelDisplay.add(infos(), BorderLayout.NORTH);
 
-		panelDisplay.add(background, BorderLayout.CENTER);
-
 		// Assemblage de la fenêtre
 		fenetre.add(panelDisplay, BorderLayout.CENTER);
 		fenetre.add(panelButtons, BorderLayout.SOUTH);
+		
 
 		// Ajout de l'icone de'avion dans la frame
 
-		ImageIcon plane = new ImageIcon(getClass().getResource("/plane2.gif"));
-
+		//ImageIcon plane = new ImageIcon(getClass().getResource("/plane2.gif"));
+		
+		fenetre.setLocationRelativeTo(null);
+		fenetre.setResizable(false);
+		fenetre.setAlwaysOnTop(false);fenetre.setLocationRelativeTo(null);
+		fenetre.setResizable(false);
+		fenetre.setAlwaysOnTop(false);
+		
+		this.game.startGame();
+		
 		fenetre.setVisible(true);
 	}
-	
 	
 	
 	private JLabel infos() {
 		
 		JLabel infos = new JLabel(" ");
-		JLabel score = new JLabel("  score : " + this.gameControl.getPlayerScore());
-		JLabel name = new JLabel("name : " + this.gameControl.getPlayerName());
-		JLabel hp = new JLabel("hp : " + this.gameControl.getPlaneHealthPoints() + " ");
+		JLabel score = new JLabel("  Score : " + this.game.player.getScore());
+		JLabel name = new JLabel("Name : " + this.game.player.getName());
+		JLabel hp = new JLabel("HP : " + this.game.plane.getHealthPoints() + " ");
 		
 		infos.setLayout(new BorderLayout());
 
@@ -137,6 +147,5 @@ public class GameInterface extends JFrame {
 		infos.setVisible(true);
 		
 		return infos;
-		
 	}
 }
