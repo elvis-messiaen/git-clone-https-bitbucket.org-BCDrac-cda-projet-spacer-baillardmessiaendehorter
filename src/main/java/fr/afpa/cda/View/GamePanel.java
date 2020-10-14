@@ -19,7 +19,6 @@ import fr.afpa.cda.controller.GameController;
 import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
-import fr.afpa.dao.beans.EndPanel;
 import fr.afpa.dao.beans.GameConstants;
 import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
