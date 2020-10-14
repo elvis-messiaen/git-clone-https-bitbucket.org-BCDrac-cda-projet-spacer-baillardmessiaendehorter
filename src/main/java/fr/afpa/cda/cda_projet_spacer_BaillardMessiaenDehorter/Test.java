@@ -8,7 +8,7 @@ public class Test {
 	public static void main(String[] args) {
 
 		GamePanel game = new GamePanel();
-        game.window();
+		game.startGame();
         
 		/*
 		GameInterface fenetre = new GameInterface();

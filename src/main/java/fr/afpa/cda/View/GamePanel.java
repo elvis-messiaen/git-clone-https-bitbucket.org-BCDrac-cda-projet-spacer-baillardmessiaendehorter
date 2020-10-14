@@ -61,7 +61,7 @@ public class GamePanel extends JPanel {
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener(this));
 		this.gameIsFinished = false;
-		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);	
+		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
 		
 		// le Thread est execute avant la fin du constructeur
 		// comme c'est aléatoire :
@@ -71,6 +71,7 @@ public class GamePanel extends JPanel {
 		// - gameThread.start();
 		// - meteoritesSpawner.start();
 		
+		window();		
 	}
 
 	
@@ -229,8 +230,6 @@ public class GamePanel extends JPanel {
 		
 		window.setContentPane(this);
 		window.setVisible(true);
-		
-		startGame();
 	}
 
 }
