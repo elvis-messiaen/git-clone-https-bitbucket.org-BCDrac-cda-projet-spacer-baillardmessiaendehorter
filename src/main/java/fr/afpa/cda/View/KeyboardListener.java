@@ -1,9 +1,7 @@
-package fr.afpa.business.services;
+package fr.afpa.cda.View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
 
 /**
  * Classe contenant le KeyListener, permettant de déplacer l'avion
@@ -12,6 +10,12 @@ import fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test;
  *
  */
 public class KeyboardListener implements KeyListener {
+	
+	private GamePanel game;
+	
+	public KeyboardListener(GamePanel game) {
+		this.game = game;
+	}
 
 	
 	/**
@@ -22,18 +26,17 @@ public class KeyboardListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent event) {
 
-		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-			
-			Test.game.plane.setSpeedX(3);
+		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {	
+			this.game.plane.setSpeedX(3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-			Test.game.plane.setSpeedX(-3);
+			this.game.plane.setSpeedX(-3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-			Test.game.plane.setSpeedY(3);
+			this.game.plane.setSpeedY(3);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_UP) {
-			Test.game.plane.setSpeedY(-3);
+			this.game.plane.setSpeedY(-3);
 		}
 	}
 
@@ -45,16 +48,16 @@ public class KeyboardListener implements KeyListener {
 	public void keyReleased(KeyEvent event) {
 		
 		if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Test.game.plane.setSpeedX(0);
+			this.game.plane.setSpeedX(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-			Test.game.plane.setSpeedX(0);
+			this.game.plane.setSpeedX(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-			Test.game.plane.setSpeedY(0);
+			this.game.plane.setSpeedY(0);
 
 		} else if (event.getKeyCode() == KeyEvent.VK_UP) {
-			Test.game.plane.setSpeedY(0);
+			this.game.plane.setSpeedY(0);
 		}
 	}
 

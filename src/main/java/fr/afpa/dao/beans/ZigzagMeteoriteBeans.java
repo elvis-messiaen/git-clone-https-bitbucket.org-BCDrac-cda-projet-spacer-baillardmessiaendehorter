@@ -32,10 +32,6 @@ public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 	}
 
 	@Override
-	public void spawn() {
-	}
-
-	@Override
 	public void move() {
 		
 

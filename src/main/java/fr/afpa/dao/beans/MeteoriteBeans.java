@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import fr.afpa.dao.beans.GameConstants;
-
 import lombok.Getter;
 import lombok.Setter;
 

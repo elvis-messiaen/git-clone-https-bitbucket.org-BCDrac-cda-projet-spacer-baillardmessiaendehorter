@@ -6,8 +6,6 @@ package fr.afpa.dao.beans;
  * @author Cécile
  */
 public interface FlyingObject {
-	
-	@Deprecated
-	public void spawn();	
+
 	public void move();
 }

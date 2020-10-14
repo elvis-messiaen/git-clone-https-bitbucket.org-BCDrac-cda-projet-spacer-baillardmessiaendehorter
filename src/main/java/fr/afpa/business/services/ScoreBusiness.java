@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
+@Deprecated
 public class ScoreBusiness {
 	private final int scoreMax = 999;
 	private int score;
