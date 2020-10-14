@@ -171,4 +171,11 @@ public class PlaneBeans {
 	public void setPlaneLeft(Image planeLeft) {
 		this.planeLeft = planeLeft;
 	}
+	public int getHealthPoints() {
+		return healthPoints;
+	}
+	public void setHealthPoints(int healthPoints) {
+		this.healthPoints = healthPoints;
+	}
+	
 }
