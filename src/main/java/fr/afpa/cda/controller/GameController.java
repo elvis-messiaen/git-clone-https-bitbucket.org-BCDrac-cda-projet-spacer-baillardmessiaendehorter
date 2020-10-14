@@ -1,7 +1,6 @@
 package fr.afpa.cda.controller;
 
 import fr.afpa.dao.beans.GameConstants;
-import fr.afpa.dao.beans.PlayerBeans;
 
 public class GameController {
 	
@@ -13,19 +12,19 @@ public class GameController {
 	}
 	
 	
-	public String checkScore(PlayerBeans player) {
-		
+	public String checkScore(int score) {
+
 		String string = "";
-		
-		if (player.getScore() <= 9) {
-			string = String.valueOf("Score : 00" + player.getScore());		
 
-		} else if (player.getScore() > 9 && player.getScore() <= 99) {
-			string = String.valueOf("Score : 0" + player.getScore());
+		if (score <= 9) {
+			string = String.valueOf("Score : 00" + score);
 
-		} else if (player.getScore() > 99 || player.getScore() < GameConstants.MAX_SCORE) {
-			string = String.valueOf("Score : " + player.getScore());
-			
+		} else if (score > 9 && score <= 99) {
+			string = String.valueOf("Score : 0" + score);
+
+		} else if (score > 99 || score < GameConstants.MAX_SCORE) {
+			string = String.valueOf("Score : " + score);
+
 		} else {
 			string = " 999";
 		}

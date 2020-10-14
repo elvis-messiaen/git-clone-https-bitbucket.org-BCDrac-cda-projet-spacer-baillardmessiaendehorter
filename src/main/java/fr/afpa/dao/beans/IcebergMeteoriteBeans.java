@@ -5,6 +5,11 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class IcebergMeteoriteBeans extends MeteoriteBeans implements FlyingObject {
 
 	private ImageIcon iconMeteorite;
@@ -24,7 +29,7 @@ public class IcebergMeteoriteBeans extends MeteoriteBeans implements FlyingObjec
 
 		this.positionX = positionX;
 
-		this.iconMeteorite = new ImageIcon(getClass().getResource("/iceMeteorite.png"));
+		this.iconMeteorite = new ImageIcon(getClass().getResource("/icebergMeteorite.png"));
 		this.imageMeteorite = this.iconMeteorite.getImage();
 	}
 
@@ -92,5 +97,8 @@ public class IcebergMeteoriteBeans extends MeteoriteBeans implements FlyingObjec
 	public boolean isDead() {
 		return this.dead;
 	}
-
+	
+	public int getPoints() {
+		return this.points;
+	}
 }
