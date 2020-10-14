@@ -24,6 +24,7 @@ import fr.afpa.dao.beans.GameOverBeans;
 import fr.afpa.dao.beans.MeteoriteBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 import fr.afpa.dao.beans.PlayerBeans;
+import fr.afpa.dao.beans.StartPanel;
 
 
 public class GamePanel extends JPanel {
@@ -62,13 +63,7 @@ public class GamePanel extends JPanel {
 		this.gameIsFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
 		
-		// le Thread est execute avant la fin du constructeur
-		// comme c'est aléatoire :
-		// plantage du jeu
-		// idéal sortir le Threads du constructeur vers une fonction
-		// et mettre
-		// - gameThread.start();
-		// - meteoritesSpawner.start();
+
 		
 		window();		
 	}
@@ -131,7 +126,7 @@ public class GamePanel extends JPanel {
 		
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
-		
+					
 		if (this.gameIsFinished) {
 			this.gameOver.draw(graph2);
 			this.endPanel = new EndPanel();
