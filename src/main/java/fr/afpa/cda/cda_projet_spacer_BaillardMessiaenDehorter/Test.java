@@ -8,9 +8,9 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		GamePanel game = new GamePanel();
-		game.startGame();
-		
+//		GamePanel game = new GamePanel();
+//		game.startGame();
+//		
         
 		/*
 		GameInterface fenetre = new GameInterface();
