@@ -14,7 +14,7 @@ public class TestPlayerBeans extends TestCase {
 
 	public void setUp() throws Exception {
 		super.setUp();
-		player = new PlayerBeans("elvism");
+		player = new PlayerBeans();
 	}
 	@Test
 	public void testNameNotNull() {
