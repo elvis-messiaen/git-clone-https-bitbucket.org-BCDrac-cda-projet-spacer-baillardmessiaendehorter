@@ -11,23 +11,51 @@ import lombok.Setter;
 @Setter
 public abstract class MeteoriteBeans implements FlyingObject {
 
-	private ImageIcon meteoriteIcon;
-	private Image imageMeteorite;
-	private int damage;
-	private int meteoriteSize;
-	private int positionX;
-	private int positionY = 80;
-	private int speedX;
-	private int speedY = 2;
-	private boolean dead = false;
-	private int width = 20;
-	private int height = 20;
-	private int points;
+	protected ImageIcon iconMeteorite;
+	protected Image imageMeteorite;
+	protected int damage;
+	protected int positionX;
+	protected int positionY;
+	protected int speedX;
+	protected int speedY;
+	protected boolean dead;
+	protected int width;
+	protected int height;
+	protected int points;
 	
-	public  MeteoriteBeans() {
+	public MeteoriteBeans(int positionX, String imagePath) {
+		
+		this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
+		this.speedY = 2;
+		this.width = 20;
+		this.height = 20;
+		this.dead = false;
+		
+		this.positionX = positionX;
+		
+		this.iconMeteorite = new ImageIcon(getClass().getResource(imagePath));
+		this.imageMeteorite = this.iconMeteorite.getImage();
 	}
-	@Override
+	
+	
 	public void move() {
+		
+		this.positionY += this.speedY;
+
+		if (this.positionX > GameConstants.GAME_SCREEN_MAX_WIDTH) {
+			this.positionX = GameConstants.GAME_SCREEN_MAX_WIDTH;
+
+		} else if (this.positionX < GameConstants.GAME_SCREEN_MIN_WIDTH) {
+			this.positionX = GameConstants.GAME_SCREEN_MIN_WIDTH;
+		}
+
+		if (this.positionY > GameConstants.GAME_SCREEN_MAX_HEIGHT) {
+			this.positionY = GameConstants.GAME_SCREEN_MAX_HEIGHT;
+			this.dead = true;
+
+		} else if (this.positionY < GameConstants.GAME_SCREEN_MIN_HEIGHT) {
+			this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
+		}
 
 	}
 	
@@ -86,38 +114,40 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	public ImageIcon getMeteoriteIcon() {
-		return meteoriteIcon;
+	
+	public ImageIcon getIconMeteorite() {
+		return iconMeteorite;
 	}
-	public void setMeteoriteIcon(ImageIcon meteoriteIcon) {
-		this.meteoriteIcon = meteoriteIcon;
+	
+	public void setMeteoriteIcon(ImageIcon iconMeteorite) {
+		this.iconMeteorite = iconMeteorite;
 	}
+	
 	public Image getImageMeteorite() {
 		return imageMeteorite;
 	}
+	
 	public void setImageMeteorite(Image imageMeteorite) {
 		this.imageMeteorite = imageMeteorite;
 	}
+	
 	public int getDamage() {
 		return damage;
 	}
+	
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	public int getMeteoriteSize() {
-		return meteoriteSize;
-	}
-	public void setMeteoriteSize(int meteoriteSize) {
-		this.meteoriteSize = meteoriteSize;
-	}
+	
 	public int getPoints() {
 		return points;
 	}
+	
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
-	
 }
