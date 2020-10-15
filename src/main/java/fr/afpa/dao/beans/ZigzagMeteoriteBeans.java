@@ -35,21 +35,18 @@ public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 			this.positionX = GameConstants.GAME_SCREEN_MAX_WIDTH;
 		}
 
-		
 		if (this.positionY > GameConstants.GAME_SCREEN_MAX_HEIGHT) {
 			this.positionY = GameConstants.GAME_SCREEN_MAX_HEIGHT;
 			this.dead = true;
-			System.out.println("Dead at : " + this.positionY);
 
 		} else if (this.positionY < GameConstants.GAME_SCREEN_MIN_HEIGHT) {
 			this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
 		}
 
-
 		this.count++;
 		this.positionY += this.speedY;
 
-		//Move left
+		// Move left
 		if (this.left) {
 			if (this.count < 60) {
 				this.positionX -= this.speedX;
@@ -60,8 +57,8 @@ public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 				this.left = false;
 				this.count = 0;
 			}
-		
-		//Move right
+
+		// Move right
 		} else {
 			if (this.count < 60) {
 				this.positionX += this.speedX;
