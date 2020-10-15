@@ -150,8 +150,8 @@ public class GamePanel extends JPanel {
 	}
 
 	protected void paintMeteorites(Graphics graph) {
-		for (MeteoriteBeans meteorite : this.meteorites) {
-			meteorite.draw(graph);
+		for (int i = 0; i < this.meteorites.size(); i++) {
+			this.meteorites.get(i).draw(graph);
 		}
 	}
 
