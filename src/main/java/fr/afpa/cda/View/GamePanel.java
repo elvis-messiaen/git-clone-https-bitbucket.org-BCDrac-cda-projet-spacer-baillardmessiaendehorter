@@ -141,8 +141,7 @@ public class GamePanel extends JPanel {
 
 		showScore(graph2);
 
-		String name =  String.valueOf ("Name : " + this.player.getName());	
-		System.out.println(name);
+		String name =  String.valueOf ("Name : " + this.player.getName());		
 		graph2.drawString(name, 250, 50);
 
 		String life = String.valueOf("HP : " + this.plane.getHealthPoints());
