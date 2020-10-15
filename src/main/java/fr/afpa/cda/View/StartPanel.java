@@ -60,17 +60,18 @@ public class StartPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String nam = theName.getText();
+
 		PlayerBeans joueur = new PlayerBeans();
 		PlayerController controleName = new PlayerController();
 
-			joueur.setName(nam);
-			
-			if (controleName.nameControle(joueur)) {
-				GamePanel game = new GamePanel();
-				game.startGame();
-				joueur.setName(nam);
-				fenetrestart.dispatchEvent(new WindowEvent(fenetrestart, WindowEvent.WINDOW_CLOSING));
-			
+		joueur.setName(nam);
+
+		if (controleName.nameControle(nam)) {
+
+			GamePanel game = new GamePanel(joueur);
+			game.startGame();
+			fenetrestart.dispatchEvent(new WindowEvent(fenetrestart, WindowEvent.WINDOW_CLOSING));
+
 		} else {
 			/*
 			 * lancement de fenetre alerte si le nom est pas valide on ferme le pop up et
@@ -83,7 +84,7 @@ public class StartPanel implements ActionListener {
 			JDialog dialog = optionPane.createDialog("Message d'erreur !");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
-			
+
 		}
 
 	}
