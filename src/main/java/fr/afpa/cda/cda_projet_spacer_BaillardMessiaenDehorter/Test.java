@@ -7,8 +7,23 @@ import fr.afpa.cda.View.StartPanel;
 public class Test {
 
 	public static void main(String[] args) {
-		StartPanel start = new StartPanel();
-	
+
+		GamePanel game = new GamePanel();
+		game.startGame();
+		
+        
+		/*
+		GameInterface fenetre = new GameInterface();
+
+		fenetre.setLocationRelativeTo(null);
+		fenetre.setResizable(false);
+		fenetre.setAlwaysOnTop(false);
+
+		game = new GameBusiness();
+
+		fenetre.setContentPane(game);
+		fenetre.setVisible(true);
+		*/
 	}
 
 }
