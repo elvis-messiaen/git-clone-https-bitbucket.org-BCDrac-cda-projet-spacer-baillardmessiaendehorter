@@ -1,5 +1,7 @@
 package fr.afpa.dao.beans;
 
+import javax.swing.ImageIcon;
+
 public class IcebergMeteoriteBeans extends MeteoriteBeans {
 
 	public IcebergMeteoriteBeans(int positionX) {
@@ -8,5 +10,11 @@ public class IcebergMeteoriteBeans extends MeteoriteBeans {
 		
 		this.damage = 4;
 		this.points = 5;
+	}
+
+	@Override
+	public void setIconMeteorite(ImageIcon iconMeteorite) {
+		
+		
 	}
 }

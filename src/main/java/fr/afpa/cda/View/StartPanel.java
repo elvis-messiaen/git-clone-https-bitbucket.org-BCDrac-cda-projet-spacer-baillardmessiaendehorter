@@ -1,4 +1,4 @@
-package fr.afpa.dao.beans;
+package fr.afpa.cda.View;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fr.afpa.cda.View.GamePanel;
 import fr.afpa.cda.controller.PlayerController;
+import fr.afpa.dao.beans.PlayerBeans;
 
 public class StartPanel implements ActionListener {
 	private Image imageStarPanel;
@@ -64,10 +64,11 @@ public class StartPanel implements ActionListener {
 		PlayerController controleName = new PlayerController();
 
 			joueur.setName(nam);
-			System.out.println(joueur.getName());
+			
 			if (controleName.nameControle(joueur)) {
 				GamePanel game = new GamePanel();
 				game.startGame();
+				joueur.setName(nam);
 				fenetrestart.dispatchEvent(new WindowEvent(fenetrestart, WindowEvent.WINDOW_CLOSING));
 			
 		} else {
