@@ -4,11 +4,6 @@ import fr.afpa.cda.View.StartPanel;
 
 //import fr.afpa.dao.beans.HighScore;
 
-import fr.afpa.business.services.HighScoreBusiness;
-import fr.afpa.cda.View.EndPanel;
-import fr.afpa.cda.View.GameInterface;
-import fr.afpa.cda.controller.ScoreController;
-
 
 /**
  * Hello world!

@@ -59,7 +59,7 @@ public class GamePanel extends JPanel {
 	public GamePanel(PlayerBeans joueur) {
 
 		this.player =joueur;
-		System.out.println(player.getName());
+		//System.out.println(player.getName());
 		this.plane = new PlaneBeans();
 		this.meteorites = new ArrayList<MeteoriteBeans>();
 		this.playControle = new PlayerController();
