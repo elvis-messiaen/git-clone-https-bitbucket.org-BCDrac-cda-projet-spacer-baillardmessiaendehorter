@@ -40,16 +40,16 @@ public class GamePanel extends JPanel {
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
 	private EndPanel endPanel;
-
 	private Thread gameThread;
 	private Thread meteoriteThread;
 	public boolean gameIsFinished;
 	private Font police;
 	private int meteoriteAttack;
 
-	public GamePanel() {
+	public GamePanel(PlayerBeans joueur) {
 
-		this.player = new PlayerBeans();
+		this.player =joueur;
+		System.out.println(player.getName());
 		this.plane = new PlaneBeans();
 		this.meteorites = new ArrayList<MeteoriteBeans>();
 		this.playControle = new PlayerController();
@@ -150,7 +150,8 @@ public class GamePanel extends JPanel {
 
 		showScore(graph2);
 
-		String name = String.valueOf("Name : " + player.getName());
+		String name =  String.valueOf ("Name : " + this.player.getName());	
+		System.out.println(name);
 		graph2.drawString(name, 250, 50);
 
 		String life = String.valueOf("HP : " + this.plane.getHealthPoints());
