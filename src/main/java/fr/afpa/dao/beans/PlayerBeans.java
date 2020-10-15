@@ -20,11 +20,10 @@ public class PlayerBeans {
 	}
 
 	public PlayerBeans(String name) {
-	
 		this.name = name;
 	}
 
-	public String getName() {
+	public String getName() {	
 		
 		return name;
 	}
