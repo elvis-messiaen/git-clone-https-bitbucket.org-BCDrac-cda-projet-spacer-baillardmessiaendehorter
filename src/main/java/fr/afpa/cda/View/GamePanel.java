@@ -122,7 +122,16 @@ public class GamePanel extends JPanel {
 
 		if (this.gameIsFinished) {
 			this.gameOver.draw(graph2);
+			for (int i = 0; i < 100; i++) {
+				if (i == 100) {
+					gameThread.interrupt();
+					this.endPanel=new EndPanel();
+					this.endPanel.draw(graph2);
+					
 
+				}
+			}
+			
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
