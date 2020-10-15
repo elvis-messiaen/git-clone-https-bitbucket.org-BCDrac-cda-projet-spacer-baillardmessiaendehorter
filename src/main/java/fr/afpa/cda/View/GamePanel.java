@@ -6,13 +6,21 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 
 import fr.afpa.cda.controller.GameController;
@@ -40,12 +48,14 @@ public class GamePanel extends JPanel {
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
 	private EndPanel endPanel;
-	private Thread gameThread;
+	private GameThread gameThread;
 	private Thread meteoriteThread;
 	public boolean gameIsFinished;
 	private Font police;
 	private int meteoriteAttack;
-
+	private Timer timer;
+	private JFrame window;
+	
 	public GamePanel(PlayerBeans joueur) {
 
 		this.player =joueur;
@@ -60,17 +70,18 @@ public class GamePanel extends JPanel {
 		this.addKeyListener(new KeyboardListener(this));
 		this.gameIsFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
-
+		
 		window();
 	}
 
 	public void startGame() {
 
-		this.gameThread = new Thread(new GameThread(this));
+		this.gameThread = new GameThread(this);
+		Thread thread = new Thread(gameThread);
 		this.meteoriteThread = new Thread(new MeteoriteThread(this.meteorites));
-		this.gameThread.setPriority(Thread.MAX_PRIORITY);
+		thread.setPriority(Thread.MAX_PRIORITY);
 		this.meteoriteThread.setPriority(Thread.MIN_PRIORITY);
-		this.gameThread.start();
+		thread.start();
 		this.meteoriteThread.start();
 	}
 
@@ -106,6 +117,21 @@ public class GamePanel extends JPanel {
 
 		if (this.gameControl.planeIsDestroyed(this.plane.getHealthPoints())) {
 			this.gameIsFinished = true;
+			gameThread.setGameOver(true);
+			/*
+			 * planificateur de tache
+			 * 
+			 */
+			 ScheduledExecutorService scheduler =
+				     Executors.newScheduledThreadPool(1);
+			 scheduler.schedule(new Runnable() {
+			       public void run() {
+						  endPanel=new EndPanel();
+							window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+							gameThread.setRunning(false);
+
+			    }
+			     }, 2, TimeUnit.SECONDS);
 		}
 	}
 
@@ -120,9 +146,8 @@ public class GamePanel extends JPanel {
 		super.paintComponents(graph);
 		Graphics graph2 = (Graphics2D) graph;
 
-		if (this.gameIsFinished) {
-			this.gameOver.draw(graph2);
-
+			if (this.gameIsFinished) {
+			gameOver.draw(graph2);
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
@@ -141,8 +166,7 @@ public class GamePanel extends JPanel {
 
 		showScore(graph2);
 
-		String name =  String.valueOf ("Name : " + this.player.getName());	
-		System.out.println(name);
+		String name =  String.valueOf ("Name : " + this.player.getName());		
 		graph2.drawString(name, 250, 50);
 
 		String life = String.valueOf("HP : " + this.plane.getHealthPoints());
@@ -164,7 +188,7 @@ public class GamePanel extends JPanel {
 	public void window() {
 
 		// Instanciations des différents élements
-		JFrame window = new JFrame("Mon jeu d'avion");
+		window = new JFrame("Mon jeu d'avion");
 
 		JPanel panelDisplay = new JPanel();
 		JPanel panelButtons = new JPanel();

@@ -7,6 +7,10 @@ import java.io.IOException;
 import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.PlayerBeans;
 
+/*
+ * Classe HighScoreBusiness. 
+ * Gère la création et la manipulation du fichier de sauvegarde
+ */
 public class HighScoreBusiness {
 
 	// Attributs
@@ -28,19 +32,14 @@ public class HighScoreBusiness {
 	 * "cda-projet-spacer" situé dans le répertoire temp
 	 */
 
-	public void createSaveFile() {
-
-		File f = new File(str + "cda-projet-spacer");
+	public void createSaveFile(File f) {
 
 		try {
-
-			f.mkdirs();
-			f.createNewFile();
-
-			String pathFile = f.getPath() + "/Save.txt";
+			String pathFile = f.getPath();
 			File file = new File(pathFile);
 			file.getParentFile().mkdirs();
 			file.createNewFile();
+			setNewHighScore(file);
 			System.out.println("fichier de save crée, message à supprimer quand les tests seront ok");
 			System.out.println(f.getPath());
 
@@ -53,14 +52,7 @@ public class HighScoreBusiness {
 	 * Inscription des HighScore dans le fichier Save.txt situé dans le répertoire
 	 * temp
 	 */
-	public void setNewHighScore() {
-
-		ScoreController sc = new ScoreController();
-
-		if (!sc.DirectoryExists()) {
-
-			createSaveFile();
-		}
+	public void setNewHighScore(File f) {
 
 		// Récupération des infos du joueur, et création du string à écrire dans le
 		// fichier Save.txt
@@ -73,8 +65,6 @@ public class HighScoreBusiness {
 		sb.append(player.getScore());
 		sb.append(";");
 		sb.append(player.getGameStartedDate());
-
-		File f = new File(str + "cda-projet-spacer/Save.txt");
 
 		try {
 			FileWriter myWriter = new FileWriter(f.getAbsolutePath(), true);
