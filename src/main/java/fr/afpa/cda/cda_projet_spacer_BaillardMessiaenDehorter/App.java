@@ -1,10 +1,6 @@
 package fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter;
 
-import javax.swing.ImageIcon;
-
-import fr.afpa.cda.View.GameInterface;
-import fr.afpa.dao.beans.EndPanel;
-import fr.afpa.dao.beans.HighScore;
+//import fr.afpa.dao.beans.HighScore;
 
 /**
  * Hello world!
@@ -19,8 +15,8 @@ public class App
         
       // EndPanel game = new EndPanel();
        
-       HighScore score = new HighScore();
-       score.setNewHighScore();
+     //  HighScore score = new HighScore();
+       //score.setNewHighScore();
       
         
    

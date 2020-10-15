@@ -9,13 +9,22 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PlayerBeans {
-	
+
 	private String name;
 	private LocalDateTime gameStartedDate;
 	private int score;
 	
 
-	public String getName() {
+	public PlayerBeans() {
+
+	}
+
+	public PlayerBeans(String name) {
+		this.name = name;
+	}
+
+	public String getName() {	
+		
 		return name;
 	}
 
@@ -23,7 +32,6 @@ public class PlayerBeans {
 		this.name = name;
 	}
 
-	
 	public LocalDateTime getGameStartedDate() {
 		return gameStartedDate;
 	}
@@ -32,11 +40,10 @@ public class PlayerBeans {
 		this.gameStartedDate = gameStartedDate;
 	}
 
-	
 	public int getScore() {
 		return this.score;
 	}
-	
+
 	public void setScore(int score) {
 		this.score = score;
 	}
