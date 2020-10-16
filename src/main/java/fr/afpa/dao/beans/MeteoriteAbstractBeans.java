@@ -7,8 +7,6 @@ import javax.swing.ImageIcon;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public abstract class MeteoriteAbstractBeans implements FlyingObject {
 
 	protected ImageIcon iconMeteorite;
@@ -119,7 +117,7 @@ public abstract class MeteoriteAbstractBeans implements FlyingObject {
 		return iconMeteorite;
 	}
 	
-	public void setMeteoriteIcon(ImageIcon iconMeteorite) {
+	public void setIconMeteorite(ImageIcon iconMeteorite) {
 		this.iconMeteorite = iconMeteorite;
 	}
 	
