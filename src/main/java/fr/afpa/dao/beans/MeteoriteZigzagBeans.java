@@ -2,7 +2,7 @@ package fr.afpa.dao.beans;
 
 import javax.swing.ImageIcon;
 
-public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject {
+public class MeteoriteZigzagBeans extends MeteoriteAbstractBeans implements FlyingObject {
 
 	int goalX;
 	int startX;
@@ -10,7 +10,7 @@ public class ZigzagMeteoriteBeans extends MeteoriteBeans implements FlyingObject
 	int count;
 	boolean left;
 
-	public ZigzagMeteoriteBeans(int positionX) {
+	public MeteoriteZigzagBeans(int positionX) {
 
 		super(positionX, "/zigzagMeteoriteLeft.png");
 

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class MeteoriteBeans implements FlyingObject {
+public abstract class MeteoriteAbstractBeans implements FlyingObject {
 
 	protected ImageIcon iconMeteorite;
 	protected Image imageMeteorite;
@@ -23,7 +23,7 @@ public abstract class MeteoriteBeans implements FlyingObject {
 	protected int height;
 	protected int points;
 	
-	public MeteoriteBeans(int positionX, String imagePath) {
+	public MeteoriteAbstractBeans(int positionX, String imagePath) {
 		
 		this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
 		this.speedY = 2;
