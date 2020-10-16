@@ -1,6 +1,6 @@
 package fr.afpa.cda.controller;
 
-import fr.afpa.dao.beans.MeteoriteBeans;
+import fr.afpa.dao.beans.MeteoriteAbstractBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class MeteoriteImpactControl {
 	 * 
 	 * @return boolean
 	 */
-	public boolean meteorContact(PlaneBeans plane, MeteoriteBeans meteorite) {
+	public boolean meteorContact(PlaneBeans plane, MeteoriteAbstractBeans meteorite) {
 
 		if (plane.getPositionX() < meteorite.getPositionX() + meteorite.getWidth()
 				&& plane.getPositionX() + plane.getLargeur() > meteorite.getPositionX()

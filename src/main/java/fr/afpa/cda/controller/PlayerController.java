@@ -1,8 +1,5 @@
 package fr.afpa.cda.controller;
 
-
-import fr.afpa.dao.beans.PlayerBeans;
-
 public class PlayerController {
 	
 	public boolean nameControle(String name) {

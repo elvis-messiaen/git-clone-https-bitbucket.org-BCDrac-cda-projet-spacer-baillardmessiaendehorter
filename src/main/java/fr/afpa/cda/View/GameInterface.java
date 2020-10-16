@@ -12,7 +12,7 @@ import javax.swing.border.Border;
 
 import fr.afpa.cda.controller.GameController;
 import fr.afpa.dao.beans.GameConstants;
-import fr.afpa.dao.beans.MeteoriteBeans;
+import fr.afpa.dao.beans.MeteoriteAbstractBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 
 /**
@@ -25,7 +25,7 @@ public class GameInterface extends JFrame {
 	
 	//private GamePanel game = new GamePanel(null);
 	private PlaneBeans plane = new PlaneBeans();
-	private MeteoriteBeans meteorite;
+	private MeteoriteAbstractBeans meteorite;
 	private GameController gameControl = new GameController();
 	
 	public GameInterface() {
