@@ -13,18 +13,18 @@ public class PlayerBeans {
 	private String name;
 	private LocalDateTime gameStartedDate;
 	private int score;
-	
+
+//	public PlayerBeans(String nam) {
+//		this.name = nam;
+//
+//	}
 
 	public PlayerBeans() {
 
 	}
 
-	public PlayerBeans(String name) {
-		this.name = name;
-	}
+	public String getName() {
 
-	public String getName() {	
-		
 		return name;
 	}
 
