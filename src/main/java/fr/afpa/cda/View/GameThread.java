@@ -9,6 +9,8 @@ package fr.afpa.cda.View;
  */
 public class GameThread implements Runnable {
 	
+	private boolean running;
+	private boolean gameOver;
 	private GamePanel game;
 	
 	public GameThread(GamePanel game) {
@@ -21,9 +23,11 @@ public class GameThread implements Runnable {
 	 */
 	@Override
 	public void run() {
-
-		while (true) {
+		running = true;
+		while (running) {
+			if (!gameOver) {
 			this.game.logic();
+			}
 			this.game.repaint();
 
 			try {
@@ -32,5 +36,13 @@ public class GameThread implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+	
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 }

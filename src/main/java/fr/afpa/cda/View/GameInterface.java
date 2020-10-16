@@ -12,7 +12,7 @@ import javax.swing.border.Border;
 
 import fr.afpa.cda.controller.GameController;
 import fr.afpa.dao.beans.GameConstants;
-import fr.afpa.dao.beans.MeteoriteBeans;
+import fr.afpa.dao.beans.MeteoriteAbstractBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 
 /**
@@ -25,7 +25,7 @@ public class GameInterface extends JFrame {
 	
 	private GamePanel game = new GamePanel(null);
 	private PlaneBeans plane = new PlaneBeans();
-	private MeteoriteBeans meteorite;
+	private MeteoriteAbstractBeans meteorite;
 	private GameController gameControl = new GameController();
 	
 	public GameInterface() {
@@ -92,8 +92,8 @@ public class GameInterface extends JFrame {
 		//icon = new ImageIcon(getClass().getResource("/starfall2.gif"));
 		//background.setIcon(icon);
 		
-		this.game.setSize(GameConstants.GAME_SCREEN_MAX_WIDTH, GameConstants.GAME_SCREEN_MAX_HEIGHT);
-		fenetre.add(this.game, BorderLayout.CENTER);
+		//this.game.setSize(GameConstants.GAME_SCREEN_MAX_WIDTH, GameConstants.GAME_SCREEN_MAX_HEIGHT);
+		//fenetre.add(this.game, BorderLayout.CENTER);
 
 		// Assemblage du panel panelButtons
 		panelButtons.add(keys, BorderLayout.CENTER);
@@ -107,7 +107,7 @@ public class GameInterface extends JFrame {
 		// "score", "name" et "hp"
 		
 
-		panelDisplay.add(infos(), BorderLayout.NORTH);
+		//panelDisplay.add(infos(), BorderLayout.NORTH);
 
 		// Assemblage de la fenêtre
 		fenetre.add(panelDisplay, BorderLayout.CENTER);
@@ -124,12 +124,12 @@ public class GameInterface extends JFrame {
 		fenetre.setResizable(false);
 		fenetre.setAlwaysOnTop(false);
 		
-		this.game.startGame();
+		//this.game.startGame();
 		
 		fenetre.setVisible(true);
 	}
 	
-	
+	/*
 	private JLabel infos() {
 		
 		JLabel infos = new JLabel(" ");
@@ -147,5 +147,5 @@ public class GameInterface extends JFrame {
 		infos.setVisible(true);
 		
 		return infos;
-	}
+	}*/
 }
