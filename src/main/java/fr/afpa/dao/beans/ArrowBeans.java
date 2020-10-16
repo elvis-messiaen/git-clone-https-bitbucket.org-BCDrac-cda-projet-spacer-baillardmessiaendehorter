@@ -36,6 +36,6 @@ public class ArrowBeans {
 	 * @param graph : le graphisme de la classe
 	 */
 	public void draw(Graphics graph) {
-		graph.drawImage(this.imageArrow, 10, 660, null);
+		graph.drawImage(this.imageArrow, 10, 680, null);
 	}
 }
