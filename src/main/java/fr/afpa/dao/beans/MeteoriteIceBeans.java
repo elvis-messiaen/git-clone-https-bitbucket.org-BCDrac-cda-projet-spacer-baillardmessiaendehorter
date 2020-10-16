@@ -1,7 +1,21 @@
 package fr.afpa.dao.beans;
 
-public class MeteoriteIceBeans extends MeteoriteAbstractBeans implements FlyingObject{
+/**
+ * Classe de la météorite de glace
+ * 
+ * Hérite de MeteoriteAbstractBeans
+ * 
+ * @author Cécile
+ */
+public class MeteoriteIceBeans extends MeteoriteAbstractBeans {
 	
+	/**
+	 * Constructeur de la météorite de glace
+	 * 
+	 * Utilise le constructeur super() de la classe MeteoriteAbstractBeans
+	 * 
+	 * @param positionX : la position horizontale de la météorite de glace
+	 */
 	public MeteoriteIceBeans(int positionX) {
 		
 		super(positionX, "/meteoriteIce.png");
