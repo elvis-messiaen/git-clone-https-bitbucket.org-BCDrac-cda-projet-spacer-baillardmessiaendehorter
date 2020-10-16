@@ -25,6 +25,7 @@ public class StartPanel implements ActionListener {
 
 	/*
 	 * fenetre de demarage demande de nom
+	 * 
 	 */
 	public StartPanel() {
 		fenetrestart = new JFrame();

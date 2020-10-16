@@ -141,7 +141,11 @@ public class GamePanel extends JPanel {
 		this.plane.setHealthPoints(this.plane.getHealthPoints() - damage);
 		return this.plane.getHealthPoints();
 	}
-
+/*
+ * la methode permet de dessiner les élément graphique
+ * on ameliore le rendu avec Graphics2D
+ * 
+ */
 	@Override
 	protected void paintComponent(Graphics graph) {
 
