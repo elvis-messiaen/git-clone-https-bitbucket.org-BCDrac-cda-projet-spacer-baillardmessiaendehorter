@@ -121,7 +121,9 @@ public class GamePanel extends JPanel {
 			this.gameThread.setGameOver(true);
 			/*
 			 * planificateur de tache
-			 * 
+			 * execute une fois
+			 * on recupere le boolean de la classe thread que l'on met a false
+			 * on definis la durée de l'execution  precédente notament animation de fin
 			 */
 			ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 			scheduler.schedule(new Runnable() {

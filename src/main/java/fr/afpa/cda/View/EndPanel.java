@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,14 +14,14 @@ import javax.swing.JPanel;
 public class EndPanel implements ActionListener {
 
 	private Image imageEndPanel;
-
+ private JFrame fenetreGameOver;
 	/*
 	 * Affichage de la fenetre de fin de partie, avec 3 boutons cliquables :
 	 * nouvelle partie, scores et quitter
 	 */
 	public EndPanel() {
 
-		JFrame fenetreGameOver = new JFrame();
+		fenetreGameOver = new JFrame();
 
 		JPanel panelChoix = new JPanel();
 
@@ -60,8 +62,8 @@ public class EndPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand() == "Nouvelle partie") {
-
-			fr.afpa.cda.cda_projet_spacer_BaillardMessiaenDehorter.Test.main(null);
+			StartPanel start = new StartPanel();
+			fenetreGameOver.dispatchEvent(new WindowEvent(fenetreGameOver, WindowEvent.WINDOW_CLOSING));
 
 		} else if (e.getActionCommand() == "Afficher les meilleurs scores") {
 
@@ -69,6 +71,7 @@ public class EndPanel implements ActionListener {
 
 		} else if (e.getSource() == "Quit") {
 			System.exit(0);
+			fenetreGameOver.dispatchEvent(new WindowEvent(fenetreGameOver, WindowEvent.WINDOW_CLOSING));
 		}
 
 	}
