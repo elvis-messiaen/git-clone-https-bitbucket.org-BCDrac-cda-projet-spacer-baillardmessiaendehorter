@@ -12,6 +12,7 @@ import fr.afpa.business.services.ListJoueur;
 public class TableauScore extends JFrame {
 
 	public TableauScore() {
+		
 		setTitle("Tableau des 20 meilleurs joueur ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTable tableau = new JTable(new ListJoueur());

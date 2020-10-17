@@ -104,33 +104,4 @@ public class GameController {
 		return false;
 	}
 	
-	
-	/**
-	 * Méthode vérifiant le score pour affichage
-	 * 
-	 * Vérifie le score du joueur pour déterminer la string permettant de l'afficher dans la fenêtre de jeu
-	 * 
-	 * @param score : le score à vérifier
-	 * @return String : contient la façon d'afficher le score, selon l'état des points (nombre de chiffres)
-	 * @author Elvis
-	 */
-	public String checkScore(int score) {
-		
-		String string = "";
-		
-		if (score <= 9) {
-			string = String.valueOf("Score : 00" + score);		
-
-		} else if (score > 9 && score <= 99) {
-			string = String.valueOf("Score : 0" + score);
-
-		} else if (score > 99 || score < GameConstants.MAX_SCORE) {
-			string = String.valueOf("Score : " + score);
-			
-		} else {
-			string = " 999";
-		}
-		return string;
-	}
-	
 }

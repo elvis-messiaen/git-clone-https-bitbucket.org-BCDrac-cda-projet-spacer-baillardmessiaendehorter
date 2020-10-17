@@ -7,31 +7,36 @@ import java.io.IOException;
 import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.PlayerBeans;
 
-/*
+/**
  * Classe HighScoreBusiness. 
+ * 
  * Gère la création et la manipulation du fichier de sauvegarde
+ * 
+ * @author Julien
  */
 public class HighScoreBusiness {
 
 	// Attributs
 	String PlayerName;
-	int Score;
 	String CurrentDate;
-	String str = System.getProperty("java.io.tmpdir");
+	String str;
+	int Score;
 
-	// Constructeur
-
+	
+	/**
+	 * Constructeur
+	 */
 	public HighScoreBusiness() {
-
+		this.str = System.getProperty("java.io.tmpdir");
 	}
 
 	// Methodes
 
-	/*
+	/**
 	 * S'il n'existe pas déjà, creation du fichier "Save.text" dans le dossier
 	 * "cda-projet-spacer" situé dans le répertoire temp
+	 * @param f : le fichier dont on prend le chemin
 	 */
-
 	public void createSaveFile(File f) {
 
 		try {
@@ -78,11 +83,9 @@ public class HighScoreBusiness {
 			} else {
 				myWriter.write(System.lineSeparator() + sb.toString());
 				myWriter.close();
-
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

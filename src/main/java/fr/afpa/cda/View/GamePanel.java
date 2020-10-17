@@ -116,26 +116,45 @@ public class GamePanel extends JPanel {
 		this.meteoriteAttack = 0;
 
 		synchronized (this.meteorites) {
+			
+			if (!this.meteorites.isEmpty()) {
+				
+				for (int i = 0; i < this.meteorites.size(); i++) {
+					
+					if (this.meteorites.get(i) != null) {
 
-			for (int i = 0; i < this.meteorites.size(); i++) {
-				this.meteorites.get(i).move();
+						this.meteorites.get(i).move();
 
-				if (this.player.getScore() < GameConstants.MAX_SCORE) {
-					if (this.meteorites.get(i).isDead() && !this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i)) && !this.gameIsFinished) {
-						this.meteoritePoints = this.meteorites.get(i).getPoints();
-						this.meteorites.remove(i);
-						this.player.setScore(this.player.getScore() + this.meteoritePoints);
-						this.meteoritePoints = 0;
+						if (this.player.getScore() < GameConstants.MAX_SCORE) {
+
+							if (this.meteorites.get(i).isDead()
+									&& !this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i))
+									&& !this.gameIsFinished) {
+
+								this.meteoritePoints = this.meteorites.get(i).getPoints();
+								this.meteorites.remove(i);
+								this.player.setScore(this.player.getScore() + this.meteoritePoints);
+								this.meteoritePoints = 0;
+							}
+
+						} else {
+							this.player.setScore(999);
+						}
+
+						if (!this.meteorites.isEmpty()) {
+
+							if (this.meteorites.get(i) != null) {
+
+								if (this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i))) {
+
+									this.meteoriteAttack = this.meteorites.get(i).getDamage();
+									this.meteorites.remove(i);
+								}
+							}
+						}
 					}
-				} else {
-					this.player.setScore(999);
 				}
-				if (this.meteorites.get(i) != null) {
-					if (this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i))) {
-						this.meteoriteAttack = this.meteorites.get(i).getDamage();
-						this.meteorites.remove(i);
-					}
-				}
+
 			}
 		}
 
@@ -243,7 +262,7 @@ public class GamePanel extends JPanel {
 	 */
 	public void showScore(Graphics graph) {
 		graph.setFont(this.police);
-		graph.drawString(this.gameControl.checkScore(this.player.getScore()), 20, 50);
+		graph.drawString("Score : " + String.format("%03d", this.player.getScore()), 20, 50);
 	}
 
 	

@@ -18,7 +18,7 @@ public class GameThread implements Runnable {
 	}
 	
 	/**
-	 * Appel de la fonction movePlane() pour définir la postion de l'avion en fonction de sa vitesse
+	 * Appel de la fonction logic() pour faire tourner le jeu
 	 * thread(1000/60) niveau de rafraichissment d'image équivalent jeu rps
 	 */
 	@Override

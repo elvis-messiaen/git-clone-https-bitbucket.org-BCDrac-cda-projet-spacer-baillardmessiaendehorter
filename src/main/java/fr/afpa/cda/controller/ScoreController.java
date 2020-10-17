@@ -12,7 +12,7 @@ import fr.afpa.business.services.HighScoreBusiness;
  */
 public class ScoreController {
 
-	/*
+	/**
 	 * Est-ce que le fichier "Save.txt" existe dans le dossier "cda-projet-spacer"
 	 * situé dans "temp" ? Si oui, il retourne true, sinon il retournera false
 	 */
