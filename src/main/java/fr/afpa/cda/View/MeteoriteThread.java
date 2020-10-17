@@ -1,74 +1,87 @@
 package fr.afpa.cda.View;
 
 import java.util.List;
-import java.util.Random;
 
-import fr.afpa.dao.beans.MeteoriteFireBeans;
-import fr.afpa.dao.beans.GameConstants;
-import fr.afpa.dao.beans.MeteoriteIceBeans;
-import fr.afpa.dao.beans.MeteoriteIcebergBeans;
+import fr.afpa.cda.controller.GameController;
 import fr.afpa.dao.beans.MeteoriteAbstractBeans;
-import fr.afpa.dao.beans.MeteoriteSimpleBeans;
-import fr.afpa.dao.beans.MeteoriteZigzagBeans;
 
+
+/**
+ * Classe du thread des météorites
+ * 
+ * Gère la génération et la destruction des météorites
+ * 
+ * @author Elvis
+ */
 public class MeteoriteThread implements Runnable {
 
 	private List<MeteoriteAbstractBeans> meteorites;
-	private Random rand = new Random();
+	private GameController gameControl;
 
+	
+	/**
+	 * Constructeur
+	 * @param meteorites : la liste qui contiendra les météorites du jeu
+	 */
 	public MeteoriteThread(List<MeteoriteAbstractBeans> meteorites) {
 		this.meteorites = meteorites;
+		this.gameControl = new GameController();
 	}
 
 	@Override
 	public void run() {
 
 		while (true) {
-			meteoriteDie();
-			
-			if (meteorites.size() < 4) {
+
+			this.meteoriteDie();
+
+			if (this.canGenerateMeteorites()) {
+				
 				try {
-					generateMeteorites();
+					this.generateMeteorites();
+					
 					Thread.sleep(500);
-					generateMeteorites();
+					this.generateMeteorites();
+					
 					Thread.sleep(1000);
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
-
 	
-	private void generateMeteorites() {
-
-		if (this.meteorites.size() < 4) {
-			int meteoriteType = this.rand.nextInt(5);
-			int randPositionX = this.rand.nextInt(GameConstants.GAME_SCREEN_MAX_WIDTH);
-
-			switch (meteoriteType) {
-				case 0 : this.meteorites.add(new MeteoriteSimpleBeans(randPositionX)); break;
-				case 1 : this.meteorites.add(new MeteoriteFireBeans(randPositionX)); break;
-				case 2 : this.meteorites.add(new MeteoriteIceBeans(randPositionX)); break;
-				case 3 : this.meteorites.add(new MeteoriteZigzagBeans(randPositionX)); break;
-				case 4 : this.meteorites.add(new MeteoriteIcebergBeans(randPositionX)); break;
-			}
-		}
+	
+	/**
+	 * Vérifie si on peut générer des météorites
+	 * 
+	 * @return boolean : retourne true si on peut générer des météorites
+	 */
+	private boolean canGenerateMeteorites() {
+		return this.gameControl.canGenerateMeteorites(this.meteorites);
 	}
 
 	
+	/**
+	 * Génère une météorite dans la liste
+	 */
+	private void generateMeteorites() {
+
+		if (this.canGenerateMeteorites()) {
+			this.meteorites.add(this.gameControl.generateMeteorites());
+		}
+	}
+	
+	/**
+	 * Permet de détruire une météorite
+	 */
 	private void meteoriteDie() {
-		
+
 		synchronized (this.meteorites) {
 			
-			if (!this.meteorites.isEmpty()) {
-				for (int i = 0; i < this.meteorites.size(); i++) {
-
-					if (this.meteorites.get(i).isDead()) {
-						this.meteorites.remove(i);
-						generateMeteorites();
-					}
-				}
+			if (this.gameControl.meteoritesExist(this.meteorites)) {
+				this.meteorites = this.gameControl.meteoritesDie(this.meteorites);
 			}
 		}
 	}

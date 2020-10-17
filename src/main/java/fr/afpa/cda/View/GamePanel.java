@@ -31,16 +31,19 @@ import fr.afpa.dao.beans.MeteoriteAbstractBeans;
 import fr.afpa.dao.beans.PlaneBeans;
 import fr.afpa.dao.beans.PlayerBeans;
 
+/**
+ * Classe de jeu intégrant les composants avion, fond, fleches et météorites
+ * 
+ * @author Elvis
+ */
 public class GamePanel extends JPanel {
-	/*
-	 * classe de jeu on integre les composants avion,fond,fleche,météorites
-	 */
+	
 	public PlaneBeans plane;
 	public PlayerBeans player;
 	private List<MeteoriteAbstractBeans> meteorites;
-	private MeteoriteImpactControl meteoriteImpactControl = new MeteoriteImpactControl();
-	private GameController gameControl = new GameController();
-	private PlayerController playControle;
+	private MeteoriteImpactControl meteoriteImpactControl;
+	private GameController gameControl;
+	private PlayerController playerController;
 	private BackgroundBeans gameBackground;
 	private ArrowBeans arrows;
 	private GameOverBeans gameOver;
@@ -50,15 +53,23 @@ public class GamePanel extends JPanel {
 	public boolean gameIsFinished;
 	private Font police;
 	private int meteoriteAttack;
+	private int meteoritePoints;
 	private Timer timer;
 	private JFrame window;
 	
-	public GamePanel(PlayerBeans joueur) {
+	/**
+	 * Constructeur
+	 * 
+	 * @param player : le joueur qui va utiliser le jeu
+	 */
+	public GamePanel(PlayerBeans player) {
 
-		this.player =joueur;
+		this.player = player;
 		this.plane = new PlaneBeans();
 		this.meteorites = new ArrayList<MeteoriteAbstractBeans>();
-		this.playControle = new PlayerController();
+		this.playerController = new PlayerController();
+		this.gameControl = new GameController();
+		this.meteoriteImpactControl = new MeteoriteImpactControl();
 		this.gameBackground = new BackgroundBeans();
 		this.arrows = new ArrowBeans();
 		this.gameOver = new GameOverBeans();
@@ -70,6 +81,12 @@ public class GamePanel extends JPanel {
 		window();
 	}
 
+	
+	/**
+	 * Crée les thread et les démarre pour lancer le jeu
+	 * 
+	 * @author Cécile
+	 */
 	public void startGame() {
 
 		this.gameThread = new GameThread(this);
@@ -82,10 +99,16 @@ public class GamePanel extends JPanel {
 		this.meteoriteThread.start();
 	}
 
-	/*
-	 * calcule la position en fonction de la vitesse et empêche la sortie de l'écran
-	 * sur une fenêtre de taille fixe fixe
+	
+	/**
+	 * Méthode activée dans le thread du jeu
 	 * 
+	 * Gère les déplacements et l'état de l'avion, les déplacements des météorites,
+	 * calcule la position en fonction de la vitesse et empêche la sortie de l'écran
+	 * sur une fenêtre de taille fixe, gère les contacts entre l'avion et les météorites
+	 * ainsi que l'affichage du score
+	 * 
+	 * @author Elvis
 	 */
 	public void logic() {
 
@@ -98,16 +121,20 @@ public class GamePanel extends JPanel {
 				this.meteorites.get(i).move();
 
 				if (this.player.getScore() < GameConstants.MAX_SCORE) {
-					if (this.meteorites.get(i).isDead() && !this.gameIsFinished) {
-						this.player.setScore(this.player.getScore() + this.meteorites.get(i).getPoints());
+					if (this.meteorites.get(i).isDead() && !this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i)) && !this.gameIsFinished) {
+						this.meteoritePoints = this.meteorites.get(i).getPoints();
+						this.meteorites.remove(i);
+						this.player.setScore(this.player.getScore() + this.meteoritePoints);
+						this.meteoritePoints = 0;
 					}
 				} else {
 					this.player.setScore(999);
 				}
-
-				if (this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i))) {
-					this.meteoriteAttack = this.meteorites.get(i).getDamage();
-					this.meteorites.remove(i);
+				if (this.meteorites.get(i) != null) {
+					if (this.meteoriteImpactControl.meteorContact(this.plane, this.meteorites.get(i))) {
+						this.meteoriteAttack = this.meteorites.get(i).getDamage();
+						this.meteorites.remove(i);
+					}
 				}
 			}
 		}
@@ -119,6 +146,7 @@ public class GamePanel extends JPanel {
 		if (this.gameControl.planeIsDestroyed(this.plane.getHealthPoints())) {
 			this.gameIsFinished = true;
 			this.gameThread.setGameOver(true);
+			
 			/*
 			 * planificateur de tache
 			 * execute une fois
@@ -127,7 +155,9 @@ public class GamePanel extends JPanel {
 			 */
 			ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 			scheduler.schedule(new Runnable() {
+				
 				public void run() {
+					
 					endPanel = new EndPanel();
 					window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 					gameThread.setRunning(false);
@@ -137,15 +167,28 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * Permet d'infliger des dégâts à l'avion
+	 * 
+	 * @param damage : les dégâts à inflliger à l'avion
+	 * @return int : les points de vie restants à l'avion
+	 */
 	public int planeGetHurt(int damage) {
 		this.plane.setHealthPoints(this.plane.getHealthPoints() - damage);
 		return this.plane.getHealthPoints();
 	}
-/*
- * la methode permet de dessiner les élément graphique
- * on ameliore le rendu avec Graphics2D
- * 
- */
+	
+	
+	/**
+	 * Méthode dessinant les éléments graphiques.
+	 * 
+	 * On ameliore le rendu avec Graphics2D.
+	 * 
+	 * @param graph : le graphisme à afficher
+	 * 
+	 * @author Elvis
+	 */
 	@Override
 	protected void paintComponent(Graphics graph) {
 
@@ -179,18 +222,36 @@ public class GamePanel extends JPanel {
 		graph2.drawString(life, 500, 50);
 		
 	}
+	
 
+	/**
+	 * Permet l'affichage des météorites
+	 * 
+	 * @param graph : l'image à  afficher
+	 */
 	protected void paintMeteorites(Graphics graph) {
 		for (int i = 0; i < this.meteorites.size(); i++) {
 			this.meteorites.get(i).draw(graph);
 		}
 	}
 
-	public void showScore(Graphics graph2) {
-		graph2.setFont(this.police);
-		graph2.drawString(this.gameControl.checkScore(this.player.getScore()), 20, 50);
+	
+	/**
+	 * Affiche le score sur la fenêtre de jeu
+	 * 
+	 * @param graph : le graphisme à afficher
+	 */
+	public void showScore(Graphics graph) {
+		graph.setFont(this.police);
+		graph.drawString(this.gameControl.checkScore(this.player.getScore()), 20, 50);
 	}
 
+	
+	/**
+	 * La fenêtre du jeu
+	 * 
+	 * @author Julien
+	 */
 	public void window() {
 
 		// Instanciations des différents élements

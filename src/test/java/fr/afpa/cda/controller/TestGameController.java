@@ -23,8 +23,10 @@ public class TestGameController extends TestCase{
 
 	@Test
 	public void testCheckScore() {
-		gameController.checkScore(154);
+		gameController.checkScore(1054);
 		assertEquals(" 999", " 999");
+		gameController.checkScore(7);
+		assertEquals("Score : 00", "Score : 00");
 	}
 
 }

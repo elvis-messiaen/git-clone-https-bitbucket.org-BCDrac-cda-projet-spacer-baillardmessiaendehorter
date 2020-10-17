@@ -3,7 +3,7 @@ package fr.afpa.cda.View;
 /**
  * Thread principal du jeu
  * 
- * Classe rendant le deplacement de l'avion plus fluide
+ * Classe rendant le déplacement de l'avion plus fluide
  * 
  * @author Elvis
  */
@@ -23,15 +23,18 @@ public class GameThread implements Runnable {
 	 */
 	@Override
 	public void run() {
-		running = true;
-		while (running) {
-			if (!gameOver) {
-			this.game.logic();
+		this.running = true;
+		
+		while (this.running) {
+			
+			if (!this.gameOver) {
+				this.game.logic();
 			}
 			this.game.repaint();
 
 			try {
 				Thread.sleep(1000 / 60);
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
