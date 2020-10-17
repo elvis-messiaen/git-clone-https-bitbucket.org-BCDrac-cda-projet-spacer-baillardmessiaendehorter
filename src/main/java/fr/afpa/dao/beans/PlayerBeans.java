@@ -23,6 +23,16 @@ public class PlayerBeans {
 
 	}
 
+	public PlayerBeans(String nom, LocalDateTime debGame, int score) {
+		this.name = nom;
+		this.gameStartedDate = debGame;
+		this.score = score;
+	}
+
+	public PlayerBeans(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 
 		return name;

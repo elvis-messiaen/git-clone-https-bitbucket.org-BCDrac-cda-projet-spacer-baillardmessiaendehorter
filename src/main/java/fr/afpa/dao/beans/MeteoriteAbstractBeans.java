@@ -7,6 +7,13 @@ import javax.swing.ImageIcon;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Classe abstraite des météorites
+ * 
+ * Implémente l'interface FlyingObject
+ * 
+ * @author Cécile
+ */
 public abstract class MeteoriteAbstractBeans implements FlyingObject {
 
 	protected ImageIcon iconMeteorite;
@@ -20,24 +27,34 @@ public abstract class MeteoriteAbstractBeans implements FlyingObject {
 	protected int width;
 	protected int height;
 	protected int points;
-	
+
+	/**
+	 * Constructeur
+	 * 
+	 * Permet d'initialiser une météorite
+	 * 
+	 * @param positionX : la position horizontale de la météorite
+	 * @param imagePath : le chemin vers l'image de la météorite
+	 */
 	public MeteoriteAbstractBeans(int positionX, String imagePath) {
-		
+
 		this.positionY = GameConstants.GAME_SCREEN_MIN_HEIGHT;
 		this.speedY = 2;
 		this.width = 20;
 		this.height = 20;
 		this.dead = false;
-		
+
 		this.positionX = positionX;
-		
+
 		this.iconMeteorite = new ImageIcon(getClass().getResource(imagePath));
 		this.imageMeteorite = this.iconMeteorite.getImage();
 	}
-	
-	
+
+	/**
+	 * Méthode pour bouger la météorite
+	 */
 	public void move() {
-		
+
 		this.positionY += this.speedY;
 
 		if (this.positionX > GameConstants.GAME_SCREEN_MAX_WIDTH) {
@@ -56,9 +73,22 @@ public abstract class MeteoriteAbstractBeans implements FlyingObject {
 		}
 
 	}
-	
+
+	/**
+	 * Méthode affichant l'image de la météorite
+	 * 
+	 * @param graph : le graphisme à afficher
+	 */
 	public void draw(Graphics graph) {
 		graph.drawImage(this.imageMeteorite, this.positionX, this.positionY, null);
+	}
+
+	public ImageIcon getIconMeteorite() {
+		return iconMeteorite;
+	}
+
+	public void setIconMeteorite(ImageIcon iconMeteorite) {
+		this.iconMeteorite = iconMeteorite;
 	}
 
 	public int getPositionX() {
@@ -92,7 +122,7 @@ public abstract class MeteoriteAbstractBeans implements FlyingObject {
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
-	
+
 	public boolean isDead() {
 		return this.dead;
 	}
@@ -112,39 +142,31 @@ public abstract class MeteoriteAbstractBeans implements FlyingObject {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	public ImageIcon getIconMeteorite() {
-		return iconMeteorite;
-	}
-	
-	public void setIconMeteorite(ImageIcon iconMeteorite) {
-		this.iconMeteorite = iconMeteorite;
-	}
-	
+
 	public Image getImageMeteorite() {
 		return imageMeteorite;
 	}
-	
+
 	public void setImageMeteorite(Image imageMeteorite) {
 		this.imageMeteorite = imageMeteorite;
 	}
-	
+
 	public int getDamage() {
 		return damage;
 	}
-	
+
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	
+
 	public int getPoints() {
 		return points;
 	}
-	
+
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	
+
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}

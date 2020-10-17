@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,10 +20,10 @@ public class EndPanel implements ActionListener {
 	 * Affichage de la fenetre de fin de partie, avec 3 boutons cliquables :
 	 * nouvelle partie, scores et quitter
 	 */
+ 
 	public EndPanel() {
-
+		
 		fenetreGameOver = new JFrame();
-
 		JPanel panelChoix = new JPanel();
 
 		JButton NewGame = new JButton("Nouvelle partie");
@@ -69,10 +70,12 @@ public class EndPanel implements ActionListener {
 
 			System.out.println("Récupération des scores non implémentée");
 
-		} else if (e.getSource() == "Quit") {
-			System.exit(0);
+		} else {
 			fenetreGameOver.dispatchEvent(new WindowEvent(fenetreGameOver, WindowEvent.WINDOW_CLOSING));
+			System.exit(0);
 		}
+			
+		
 
 	}
 

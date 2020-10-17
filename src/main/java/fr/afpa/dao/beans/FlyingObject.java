@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Interface gerant le comportement des météorittes
+ * Interface gérant le comportement des météorittes
  * 
  * @author Cécile
  */
