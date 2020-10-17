@@ -105,7 +105,7 @@ public class HighScoreBusiness {
 	/*
 	 * Lecture
 	 */
-	public void GetListHighScore(File file) throws IOException {
+	public List<PlayerBeans> GetListHighScore(File file) throws IOException {
 
 		List<String> result = Files.readAllLines(Paths.get(file.getAbsolutePath()));
 		List<PlayerBeans> players = new ArrayList<PlayerBeans>();
@@ -129,6 +129,8 @@ public class HighScoreBusiness {
 
 			System.out.println(itr.next());
 		}
+		
+		return players;
 	}
 	
 
