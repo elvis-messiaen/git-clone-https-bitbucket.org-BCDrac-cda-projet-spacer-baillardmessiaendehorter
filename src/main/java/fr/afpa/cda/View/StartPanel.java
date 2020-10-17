@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.TextListener;
 import java.awt.event.WindowEvent;
+import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,39 +19,41 @@ import fr.afpa.cda.controller.PlayerController;
 import fr.afpa.dao.beans.PlayerBeans;
 
 public class StartPanel implements ActionListener {
-	private Image imageStarPanel;
-	JFrame fenetrestart;
-	public JTextField theName;
+	private Image imageStartPanel;
+	private JFrame startWindow;
+	public JTextField playerName;
 
 	/*
 	 * fenetre de demarage demande de nom
 	 * 
 	 */
 	public StartPanel() {
-		fenetrestart = new JFrame();
+		this.startWindow = new JFrame();
 		JPanel name = new JPanel();
 		JLabel nom = new JLabel("Entrez votre nom de jeu :");
-		theName = new JTextField(25);
+		this.playerName = new JTextField(25);
 		JButton valid = new JButton("Valider");
+		
 		valid.addActionListener(this);
 		name.add(nom);
-		name.add(theName);
+		name.add(this.playerName);
 		name.add(valid);
-		fenetrestart.setSize(300, 300);
-		fenetrestart.setLocationRelativeTo(null);
-		fenetrestart.setResizable(false);
-		fenetrestart.setAlwaysOnTop(true);
-		theName.addActionListener(this);
-		fenetrestart.setVisible(true);
-		fenetrestart.add(name);
-		fenetrestart.setVisible(true);
+		
+		this.startWindow.setSize(300, 300);
+		this.startWindow.setLocationRelativeTo(null);
+		this.startWindow.setResizable(false);
+		this.startWindow.setAlwaysOnTop(true);
+		this.playerName.addActionListener(this);
+		this.startWindow.setVisible(true);
+		this.startWindow.add(name);
+		this.startWindow.setVisible(true);
 	}
 
 	/*
 	 * dessin de la fenetre de demande de nom
 	 */
 	public void draw(Graphics graph2) {
-		graph2.drawImage(this.imageStarPanel, 10, 660, null);
+		graph2.drawImage(this.imageStartPanel, 10, 660, null);
 
 	}
 
@@ -60,18 +62,20 @@ public class StartPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String nam = theName.getText();
+		String name = this.playerName.getText();
 
-		PlayerBeans joueur = new PlayerBeans();
-		PlayerController controleName = new PlayerController();
+		PlayerBeans player = new PlayerBeans();
+		PlayerController controlName = new PlayerController();
+		LocalDateTime date = LocalDateTime.now();
 
-		joueur.setName(nam);
+		player.setName(name);
+		player.setGameStartedDate(date);
 
-		if (controleName.nameControle(nam)) {
+		if (controlName.nameControle(name)) {
 
-			GamePanel game = new GamePanel(joueur);
+			GamePanel game = new GamePanel(player);
 			game.startGame();
-			fenetrestart.dispatchEvent(new WindowEvent(fenetrestart, WindowEvent.WINDOW_CLOSING));
+			this.startWindow.dispatchEvent(new WindowEvent(startWindow, WindowEvent.WINDOW_CLOSING));
 
 		} else {
 			/*

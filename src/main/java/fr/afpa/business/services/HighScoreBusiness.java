@@ -1,52 +1,38 @@
 package fr.afpa.business.services;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.Collections;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-
-
-import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.PlayerBeans;
 
 /**
- * Classe HighScoreBusiness. 
+ * Classe HighScoreBusiness.
  * 
  * Gère la création et la manipulation du fichier de sauvegarde
  * 
  * @author Julien
  */
-public class HighScoreBusiness  {
+public class HighScoreBusiness {
 
 	// Attributs
+	PlayerBeans player;
 	String PlayerName;
 	String CurrentDate;
 	String str;
 	int Score;
 
-	
 	/**
 	 * Constructeur
 	 */
@@ -59,6 +45,7 @@ public class HighScoreBusiness  {
 	/**
 	 * S'il n'existe pas déjà, creation du fichier "Save.text" dans le dossier
 	 * "cda-projet-spacer" situé dans le répertoire temp
+	 * 
 	 * @param f : le fichier dont on prend le chemin
 	 */
 	public void createSaveFile(File f) {
@@ -114,34 +101,56 @@ public class HighScoreBusiness  {
 		}
 	}
 
+
 	/*
 	 * Lecture
 	 */
-	public void GetListHighScore(File f) throws IOException {
+	public void GetListHighScore(File file) throws IOException {
 
-		List<String> result = Files.readAllLines(Paths.get(f.getAbsolutePath()));
-		Collections.sort(result, (a,b) -> b.compareTo(a));	
+		List<String> result = Files.readAllLines(Paths.get(file.getAbsolutePath()));
+		List<PlayerBeans> players = new ArrayList<PlayerBeans>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		
-		Iterator<String> itr = result.iterator();
-		while (itr.hasNext()) {				
-		
-		System.out.println(itr.next());
+		for (int i = 0; i < result.size(); i++) {
+			String [] splitResult = result.get(i).split(";");
+			PlayerBeans player = new PlayerBeans();
+			
+			player.setName(splitResult[0]);
+			player.setScore(Integer.parseInt(splitResult[1]));
+			player.setGameStartedDate((LocalDateTime.parse(splitResult[3], formatter)));
+			
+			players.add(player);
 		}
 		
+		Collections.sort(players, new SortByScore());
+
+		Iterator<String> itr = result.iterator();
+		while (itr.hasNext()) {
+
+			System.out.println(itr.next());
+		}
 	}
 	
-	public String getScores (String s) {
+
+	public String getScores(String s) {
+
+		String result = null;
+
+		Pattern pattern = Pattern.compile(";(.*?);");
+		Matcher matcher = pattern.matcher(s);
+		if (matcher.find()) {
+			result = matcher.group(1);
+		}
+		System.out.println(result);
+		return result;
+	}
+}
+	
+	class SortByScore implements Comparator	{ 
 		
-	String result = null;
-	
-	Pattern pattern = Pattern.compile(";(.*?);");
-	Matcher matcher = pattern.matcher(s);
-	if (matcher.find())
-	{
-	    result = matcher.group(1);
-	}
-	System.out.println( result);
-	return result;
-}
-	
-}
+		
+		@Override
+		public int compare(Object playerA, Object playerB) {
+			return ((PlayerBeans) playerB).getScore() - ((PlayerBeans) playerA).getScore();
+		}
+	} 
