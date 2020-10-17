@@ -1,8 +1,32 @@
 package fr.afpa.business.services;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Collections;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+
 
 import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.PlayerBeans;
@@ -14,7 +38,7 @@ import fr.afpa.dao.beans.PlayerBeans;
  * 
  * @author Julien
  */
-public class HighScoreBusiness {
+public class HighScoreBusiness  {
 
 	// Attributs
 	String PlayerName;
@@ -89,4 +113,35 @@ public class HighScoreBusiness {
 			e.printStackTrace();
 		}
 	}
+
+	/*
+	 * Lecture
+	 */
+	public void GetListHighScore(File f) throws IOException {
+
+		List<String> result = Files.readAllLines(Paths.get(f.getAbsolutePath()));
+		Collections.sort(result, (a,b) -> b.compareTo(a));	
+		
+		Iterator<String> itr = result.iterator();
+		while (itr.hasNext()) {				
+		
+		System.out.println(itr.next());
+		}
+		
+	}
+	
+	public String getScores (String s) {
+		
+	String result = null;
+	
+	Pattern pattern = Pattern.compile(";(.*?);");
+	Matcher matcher = pattern.matcher(s);
+	if (matcher.find())
+	{
+	    result = matcher.group(1);
+	}
+	System.out.println( result);
+	return result;
+}
+	
 }

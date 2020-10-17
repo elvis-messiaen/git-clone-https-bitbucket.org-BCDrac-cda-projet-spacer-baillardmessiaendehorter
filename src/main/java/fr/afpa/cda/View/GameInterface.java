@@ -23,7 +23,7 @@ import fr.afpa.dao.beans.PlaneBeans;
  */
 public class GameInterface extends JFrame {
 	
-	//private GamePanel game = new GamePanel(null);
+	private GamePanel game = new GamePanel(null);
 	private PlaneBeans plane = new PlaneBeans();
 	private MeteoriteAbstractBeans meteorite;
 	private GameController gameControl = new GameController();
@@ -134,7 +134,7 @@ public class GameInterface extends JFrame {
 		
 		JLabel infos = new JLabel(" ");
 		JLabel score = new JLabel("  Score : " + this.game.player.getScore());
-		JLabel name = new JLabel("Name : " + this.game.player.getName());
+		JLabel name = new JLabel("Name : " + this.game.player.getName());	
 		JLabel hp = new JLabel("HP : " + this.game.plane.getHealthPoints() + " ");
 		
 		infos.setLayout(new BorderLayout());

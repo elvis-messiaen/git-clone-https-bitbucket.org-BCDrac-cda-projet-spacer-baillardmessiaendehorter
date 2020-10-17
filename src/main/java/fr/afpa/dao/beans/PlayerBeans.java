@@ -14,6 +14,11 @@ public class PlayerBeans {
 	private LocalDateTime gameStartedDate;
 	private int score;
 
+//	public PlayerBeans(String nam) {
+//		this.name = nam;
+//
+//	}
+
 	public PlayerBeans() {
 
 	}
