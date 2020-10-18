@@ -33,12 +33,12 @@ public class StartPanel implements ActionListener {
 		JLabel nom = new JLabel("Entrez votre nom de jeu :");
 		this.playerName = new JTextField(25);
 		JButton valid = new JButton("Valider");
-		
+
 		valid.addActionListener(this);
 		name.add(nom);
 		name.add(this.playerName);
 		name.add(valid);
-		
+
 		this.startWindow.setSize(300, 300);
 		this.startWindow.setLocationRelativeTo(null);
 		this.startWindow.setResizable(false);
@@ -47,6 +47,7 @@ public class StartPanel implements ActionListener {
 		this.startWindow.setVisible(true);
 		this.startWindow.add(name);
 		this.startWindow.setVisible(true);
+
 	}
 
 	/*
@@ -76,7 +77,7 @@ public class StartPanel implements ActionListener {
 			GamePanel game = new GamePanel(player);
 			game.startGame();
 			this.startWindow.dispatchEvent(new WindowEvent(startWindow, WindowEvent.WINDOW_CLOSING));
-
+		
 		} else {
 			/*
 			 * lancement de fenetre alerte si le nom est pas valide on ferme le pop up et
@@ -89,6 +90,7 @@ public class StartPanel implements ActionListener {
 			JDialog dialog = optionPane.createDialog("Message d'erreur !");
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
+			
 
 		}
 
