@@ -9,6 +9,7 @@ public class GameConstants {
 	public static final int GAME_SCREEN_MAX_WIDTH = 560;
 	public static final int GAME_SCREEN_MIN_WIDTH = 10;
 	public static final int MAX_SCORE = 999;
+	public static final String GAME_NAME = "Spacer";
 	
 	private GameConstants() {
 		

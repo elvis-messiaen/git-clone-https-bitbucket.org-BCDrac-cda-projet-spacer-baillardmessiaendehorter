@@ -215,7 +215,7 @@ public class GamePanel extends JPanel {
 		Graphics graph2 = (Graphics2D) graph;
 
 			if (this.gameIsFinished) {
-			gameOver.draw(graph2);
+			this.gameOver.draw(graph2);
 		} else {
 			this.gameBackground.draw(graph2);
 			this.arrows.draw(graph2);
@@ -274,7 +274,7 @@ public class GamePanel extends JPanel {
 	public void window() {
 
 		// Instanciations des différents élements
-		window = new JFrame("Mon jeu d'avion");
+		window = new JFrame(GameConstants.GAME_NAME);
 
 		JPanel panelDisplay = new JPanel();
 		JPanel panelButtons = new JPanel();
