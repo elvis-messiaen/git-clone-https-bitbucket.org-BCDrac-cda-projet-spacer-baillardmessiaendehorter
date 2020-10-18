@@ -5,7 +5,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,18 +17,33 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import fr.afpa.cda.controller.PlayerController;
+import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.PlayerBeans;
 
+/**
+ * Crée une fenêtre s'affichant au démarrage du jeu
+ * 
+ * @author Elvis
+ */
 public class StartPanel implements ActionListener {
+	
 	private Image imageStartPanel;
 	private JFrame startWindow;
 	public JTextField playerName;
+	private ScoreController score;
 
-	/*
-	 * fenetre de demarage demande de nom
-	 * 
+	
+	/**
+	 * La fenêtre s'affichant au démarrage
 	 */
 	public StartPanel() {
+		
+		this.score = new ScoreController();
+		
+		if (!score.directoryExists()) {
+			score.createSaveFile();
+		}
+		
 		this.startWindow = new JFrame();
 		JPanel name = new JPanel();
 		JLabel nom = new JLabel("Entrez votre nom de jeu :");
@@ -50,24 +66,27 @@ public class StartPanel implements ActionListener {
 
 	}
 
-	/*
-	 * dessin de la fenetre de demande de nom
+	/**
+	 * Affiche le graphisme de la fenêtre
+	 * 
+	 * @param graph2 : le graphisme à afficher
 	 */
 	public void draw(Graphics graph2) {
 		graph2.drawImage(this.imageStartPanel, 10, 660, null);
 
 	}
 
-	/*
-	 * methode de controle de nom lancement si nom valide de la partie de jeu le
-	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String name = this.playerName.getText();
 
 		PlayerBeans player = new PlayerBeans();
 		PlayerController controlName = new PlayerController();
-		LocalDateTime date = LocalDateTime.now();
+		Date today = new Date();
+		SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		String date = formater.format(today);
+		//LocalDateTime date = LocalDateTime.now();
 
 		player.setName(name);
 		player.setGameStartedDate(date);

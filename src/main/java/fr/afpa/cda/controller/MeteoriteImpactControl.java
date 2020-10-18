@@ -19,7 +19,9 @@ public class MeteoriteImpactControl {
 	/**
 	 * Vérifie l'impact entre l'avion et la météorite
 	 * 
-	 * @return boolean
+	 * @param plane : l'avion qui doit entrer en collision
+	 * @param meteorite : la météorite qui doit entrer en collision
+	 * @return boolean : return true si il y a contact entre l'avion et la météorite
 	 */
 	public boolean meteorContact(PlaneBeans plane, MeteoriteAbstractBeans meteorite) {
 

@@ -19,7 +19,7 @@ import fr.afpa.dao.beans.PlaneBeans;
  * Classe gérant l'interface graphique du jeu
  * 
  * @author Julien
- *
+ * @deprecated
  */
 public class GameInterface extends JFrame {
 	
@@ -31,8 +31,11 @@ public class GameInterface extends JFrame {
 	public GameInterface() {
 	}
 	
+	
+	/**
+	 * Crée la fenêtre de jeu
+	 */
 	public void fenetre() {
-
 
 		// Instanciations des différents élements
 		JFrame fenetre = new JFrame("Mon jeu d'avion");

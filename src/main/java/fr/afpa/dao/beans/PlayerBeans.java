@@ -1,8 +1,5 @@
 package fr.afpa.dao.beans;
 
-import java.time.LocalDateTime;
-
-import fr.afpa.cda.controller.PlayerController;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +8,7 @@ import lombok.Setter;
 public class PlayerBeans {
 
 	private String name;
-	private LocalDateTime gameStartedDate;
+	private String gameStartedDate;
 	private int score;
 
 //	public PlayerBeans(String nam) {
@@ -23,9 +20,9 @@ public class PlayerBeans {
 
 	}
 
-	public PlayerBeans(String nom, LocalDateTime debGame, int score) {
+	public PlayerBeans(String nom, int score, String startGame) {
 		this.name = nom;
-		this.gameStartedDate = debGame;
+		this.gameStartedDate = startGame;
 		this.score = score;
 	}
 
@@ -42,12 +39,12 @@ public class PlayerBeans {
 		this.name = name;
 	}
 
-	public LocalDateTime getGameStartedDate() {
+	public String getGameStartedDate() {
 		return gameStartedDate;
 	}
 
-	public void setGameStartedDate(LocalDateTime gameStartedDate) {
-		this.gameStartedDate = gameStartedDate;
+	public void setGameStartedDate(String date) {
+		this.gameStartedDate = date;
 	}
 
 	public int getScore() {

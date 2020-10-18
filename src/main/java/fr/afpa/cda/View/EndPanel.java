@@ -7,22 +7,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Affiche l'écran de fin de partie
+ * 
+ * @author Julien
+ */
 public class EndPanel implements ActionListener {
 
 	private Image imageEndPanel;
- private JFrame fenetreGameOver;
-	/*
+	private JFrame fenetreGameOver;
+
+	
+	/**
 	 * Affichage de la fenetre de fin de partie, avec 3 boutons cliquables :
 	 * nouvelle partie, scores et quitter
 	 */
- 
 	public EndPanel() {
-		
+
 		fenetreGameOver = new JFrame();
 		JPanel panelChoix = new JPanel();
 
@@ -54,9 +61,14 @@ public class EndPanel implements ActionListener {
 
 	}
 
+	
+	/**
+	 * Affiche le graphisme
+	 * 
+	 * @param graph : le graphisme à afficher
+	 */
 	public void draw(Graphics graph) {
 		graph.drawImage(this.imageEndPanel, 10, 660, null);
-
 	}
 
 	@Override
@@ -68,15 +80,16 @@ public class EndPanel implements ActionListener {
 
 		} else if (e.getActionCommand() == "Afficher les meilleurs scores") {
 
-			System.out.println("Récupération des scores non implémentée");
+			try {
+				ScorePanel score = new ScorePanel();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 
 		} else {
 			fenetreGameOver.dispatchEvent(new WindowEvent(fenetreGameOver, WindowEvent.WINDOW_CLOSING));
 			System.exit(0);
 		}
-			
-		
-
 	}
 
 }

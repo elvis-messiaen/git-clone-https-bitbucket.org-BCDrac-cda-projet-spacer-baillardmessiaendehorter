@@ -8,12 +8,15 @@ import javax.swing.ImageIcon;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Classe de l'avion
+ * 
+ * @author Cécile
+ */
 @Getter
 @Setter
 public class PlaneBeans {
-	/*
-	 * attribut de l'avion
-	 */
+
 	private ImageIcon iconPlane;
 	private Image plane;
 	private ImageIcon iconPlaneRight;
