@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 
 import fr.afpa.business.services.HighScoreBusiness;
+import fr.afpa.dao.beans.PlayerBeans;
 
 /*
  * Classe ScoreController. Vérifie l'existence du fichier de sauvegarde. 
@@ -14,9 +15,9 @@ public class ScoreController {
 
 	/**
 	 * Est-ce que le fichier "Save.txt" existe dans le dossier "cda-projet-spacer"
-	 * situé dans "temp" ? Si oui, il retourne true, sinon il retournera false
+	 * situé dans "temp" ? Si oui, il appellera la méthode "setNewHighScore" pour enregistrer des scores, sinon il créera un fichier en appellant la méthode "createSaveFile".
 	 */
-	public void DirectoryExists() {
+	public PlayerBeans DirectoryExists(PlayerBeans p) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("java.io.tmpdir"));
@@ -26,11 +27,14 @@ public class ScoreController {
 
 		if (file.exists()) {
 			HighScoreBusiness score = new HighScoreBusiness();
-			score.setNewHighScore(file);
+			score.setNewHighScore(file, p);
 		} else {
 			HighScoreBusiness score = new HighScoreBusiness();
-			score.createSaveFile(file);
+			score.createSaveFile(file, p);
 
 		}
+		return p;
 	}
+	
+
 }
