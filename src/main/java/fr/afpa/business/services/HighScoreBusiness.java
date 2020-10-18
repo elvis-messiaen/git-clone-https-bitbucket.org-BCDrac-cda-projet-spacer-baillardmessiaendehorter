@@ -47,17 +47,16 @@ public class HighScoreBusiness {
 	 * "cda-projet-spacer" situé dans le répertoire temp
 	 * 
 	 * @param f : le fichier dont on prend le chemin
+	 * @param p 
 	 */
-	public void createSaveFile(File f) {
+	public void createSaveFile(File f, PlayerBeans p) {
 
 		try {
 			String pathFile = f.getPath();
 			File file = new File(pathFile);
 			file.getParentFile().mkdirs();
 			file.createNewFile();
-			setNewHighScore(file);
-			System.out.println("fichier de save crée, message à supprimer quand les tests seront ok");
-			System.out.println(f.getPath());
+			setNewHighScore(file, p);		
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,19 +67,18 @@ public class HighScoreBusiness {
 	 * Inscription des HighScore dans le fichier Save.txt situé dans le répertoire
 	 * temp
 	 */
-	public void setNewHighScore(File f) {
+	public void setNewHighScore(File f, PlayerBeans p) {
 
 		// Récupération des infos du joueur, et création du string à écrire dans le
 		// fichier Save.txt
 
-		StringBuilder sb = new StringBuilder();
-		PlayerBeans player = new PlayerBeans();
+		StringBuilder sb = new StringBuilder();		
 
-		sb.append(player.getName());
+		sb.append(p.getName());
 		sb.append(";");
-		sb.append(player.getScore());
+		sb.append(p.getScore());
 		sb.append(";");
-		sb.append(player.getGameStartedDate());
+		sb.append(p.getGameStartedDate());
 
 		try {
 			FileWriter myWriter = new FileWriter(f.getAbsolutePath(), true);

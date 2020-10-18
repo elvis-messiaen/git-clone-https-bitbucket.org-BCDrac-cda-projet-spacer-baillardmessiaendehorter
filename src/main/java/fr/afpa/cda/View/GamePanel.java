@@ -25,6 +25,7 @@ import javax.swing.border.Border;
 import fr.afpa.cda.controller.GameController;
 import fr.afpa.cda.controller.MeteoriteImpactControl;
 import fr.afpa.cda.controller.PlayerController;
+import fr.afpa.cda.controller.ScoreController;
 import fr.afpa.dao.beans.ArrowBeans;
 import fr.afpa.dao.beans.BackgroundBeans;
 import fr.afpa.dao.beans.GameConstants;
@@ -165,6 +166,8 @@ public class GamePanel extends JPanel {
 		if (this.gameControl.planeIsDestroyed(this.plane.getHealthPoints())) {
 			this.gameIsFinished = true;
 			this.gameThread.setGameOver(true);
+			ScoreController score = new ScoreController();
+			score.DirectoryExists(player);
 
 			/*
 			 * planificateur de tache execute une fois on recupere le boolean de la classe
