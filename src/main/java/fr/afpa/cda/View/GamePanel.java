@@ -286,7 +286,6 @@ public class GamePanel extends JPanel {
 		window.setLocationRelativeTo(null);
 		window.setResizable(false);
 		window.setAlwaysOnTop(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Elements JPanel
 		panelDisplay.setLayout(new BorderLayout());
 		panelDisplay.setPreferredSize(new Dimension(400, 200));
