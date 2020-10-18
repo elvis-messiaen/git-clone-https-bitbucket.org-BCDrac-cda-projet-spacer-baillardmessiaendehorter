@@ -29,7 +29,6 @@ public class StartPanel implements ActionListener {
 	 */
 	public StartPanel() {
 		this.startWindow = new JFrame();
-		startWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel name = new JPanel();
 		JLabel nom = new JLabel("Entrez votre nom de jeu :");
 		this.playerName = new JTextField(25);
