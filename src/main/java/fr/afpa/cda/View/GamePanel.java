@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,7 @@ import fr.afpa.dao.beans.PlayerBeans;
  * @author Elvis
  */
 public class GamePanel extends JPanel {
-	
+
 	public PlaneBeans plane;
 	public PlayerBeans player;
 	private List<MeteoriteAbstractBeans> meteorites;
@@ -56,7 +58,7 @@ public class GamePanel extends JPanel {
 	private int meteoritePoints;
 	private Timer timer;
 	private JFrame window;
-	
+
 	/**
 	 * Constructeur
 	 * 
@@ -77,11 +79,10 @@ public class GamePanel extends JPanel {
 		this.addKeyListener(new KeyboardListener(this));
 		this.gameIsFinished = false;
 		this.police = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 24);
-		
+
 		window();
 	}
 
-	
 	/**
 	 * Crée les thread et les démarre pour lancer le jeu
 	 * 
@@ -92,21 +93,20 @@ public class GamePanel extends JPanel {
 		this.gameThread = new GameThread(this);
 		Thread thread = new Thread(gameThread);
 		this.meteoriteThread = new Thread(new MeteoriteThread(this.meteorites));
-		
+
 		thread.setPriority(Thread.MAX_PRIORITY);
 		this.meteoriteThread.setPriority(Thread.MIN_PRIORITY);
 		thread.start();
 		this.meteoriteThread.start();
 	}
 
-	
 	/**
 	 * Méthode activée dans le thread du jeu
 	 * 
 	 * Gère les déplacements et l'état de l'avion, les déplacements des météorites,
 	 * calcule la position en fonction de la vitesse et empêche la sortie de l'écran
-	 * sur une fenêtre de taille fixe, gère les contacts entre l'avion et les météorites
-	 * ainsi que l'affichage du score
+	 * sur une fenêtre de taille fixe, gère les contacts entre l'avion et les
+	 * météorites ainsi que l'affichage du score
 	 * 
 	 * @author Elvis
 	 */
@@ -116,11 +116,11 @@ public class GamePanel extends JPanel {
 		this.meteoriteAttack = 0;
 
 		synchronized (this.meteorites) {
-			
+
 			if (!this.meteorites.isEmpty()) {
-				
+
 				for (int i = 0; i < this.meteorites.size(); i++) {
-					
+
 					if (this.meteorites.get(i) != null) {
 
 						this.meteorites.get(i).move();
@@ -165,18 +165,17 @@ public class GamePanel extends JPanel {
 		if (this.gameControl.planeIsDestroyed(this.plane.getHealthPoints())) {
 			this.gameIsFinished = true;
 			this.gameThread.setGameOver(true);
-			
+
 			/*
-			 * planificateur de tache
-			 * execute une fois
-			 * on recupere le boolean de la classe thread que l'on met a false
-			 * on definis la durée de l'execution  precédente notament animation de fin
+			 * planificateur de tache execute une fois on recupere le boolean de la classe
+			 * thread que l'on met a false on definis la durée de l'execution precédente
+			 * notament animation de fin
 			 */
 			ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 			scheduler.schedule(new Runnable() {
-				
+
 				public void run() {
-					
+
 					endPanel = new EndPanel();
 					window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 					gameThread.setRunning(false);
@@ -184,9 +183,9 @@ public class GamePanel extends JPanel {
 				}
 			}, 2, TimeUnit.SECONDS);
 		}
+
 	}
 
-	
 	/**
 	 * Permet d'infliger des dégâts à l'avion
 	 * 
@@ -197,8 +196,7 @@ public class GamePanel extends JPanel {
 		this.plane.setHealthPoints(this.plane.getHealthPoints() - damage);
 		return this.plane.getHealthPoints();
 	}
-	
-	
+
 	/**
 	 * Méthode dessinant les éléments graphiques.
 	 * 
@@ -234,19 +232,18 @@ public class GamePanel extends JPanel {
 
 		showScore(graph2);
 
-		String name =  String.valueOf ("Name : " + this.player.getName());		
+		String name = String.valueOf("Name : " + this.player.getName());
 		graph2.drawString(name, 250, 50);
 
 		String life = String.valueOf("HP : " + this.plane.getHealthPoints());
 		graph2.drawString(life, 500, 50);
-		
+
 	}
-	
 
 	/**
 	 * Permet l'affichage des météorites
 	 * 
-	 * @param graph : l'image à  afficher
+	 * @param graph : l'image à afficher
 	 */
 	protected void paintMeteorites(Graphics graph) {
 		for (int i = 0; i < this.meteorites.size(); i++) {
@@ -254,7 +251,6 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	
 	/**
 	 * Affiche le score sur la fenêtre de jeu
 	 * 
@@ -265,7 +261,6 @@ public class GamePanel extends JPanel {
 		graph.drawString("Score : " + String.format("%03d", this.player.getScore()), 20, 50);
 	}
 
-	
 	/**
 	 * La fenêtre du jeu
 	 * 
@@ -291,7 +286,6 @@ public class GamePanel extends JPanel {
 		window.setLocationRelativeTo(null);
 		window.setResizable(false);
 		window.setAlwaysOnTop(true);
-
 		// Elements JPanel
 		panelDisplay.setLayout(new BorderLayout());
 		panelDisplay.setPreferredSize(new Dimension(400, 200));
